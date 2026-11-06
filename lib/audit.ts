@@ -1,0 +1,2 @@
+import { getDb } from "../db";import { auditLogs } from "../db/schema";
+export async function recordAudit(user:{id:number;displayName:string},action:string,entityType:string,entityId:string,summary:string,operationId?:string){await getDb().insert(auditLogs).values({userId:user.id,userName:user.displayName,action,entityType,entityId,operationId:operationId||null,summary,createdAt:new Date().toISOString()})}

@@ -1,0 +1,18 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {DatabaseSync} from 'node:sqlite';
+import {inventoryIntegration} from '../lib/inventory-integration.ts';
+const token='test-only-inventory-secret-1234567890';
+function setup(){
+ const db=new DatabaseSync(':memory:');
+ for(const entry of JSON.parse(readFileSync('drizzle/meta/_journal.json','utf8')).entries)db.exec(readFileSync('drizzle/'+entry.tag+'.sql','utf8'));
+ db.exec("INSERT INTO pricing_catalog_items (id,identity_key,product,sku,created_at,updated_at) VALUES (1,'one','测试产品','SKU-001','2026-09-14','2026-09-14')");
+ const insert=db.prepare("INSERT INTO stocks (id,location_code,inbound_date,product,barcode,customer_name,total_quantity,total_boxes,pallet_count,catalog_item_id,updated_at,note) VALUES (?,?,'2026-09-14','测试产品','000123',?,60,3,0.5,?,'2026-09-14','不应公开的备注')");
+ insert.run(1,'D13-1','客户甲',1);insert.run(2,'D13-2','客户乙',null);insert.run(3,'D14-1','客户甲',null);
+ const calls=[];return {db,calls,env:{WORKORDER_INVENTORY_TOKEN:token,DB:{prepare(sql){calls.push(sql);return{bind(...values){return{async all(){return{results:db.prepare(sql).all(...values)}}}}}}}}};
+}
+const request=(query='',secret=token,method='GET')=>new Request('https://inventory.test/api/integrations/inventory?'+query,{method,headers:{Authorization:'Bearer '+secret}});
+test('auth and bounded parameters reject before any database query',async()=>{const s=setup();for(const [req,status]of[[request('q=测试','wrong'),401],[request('q=测试',token,'POST'),405],[request('q=测试&limit=99'),400],[request('stockId=0'),400]])assert.equal((await inventoryIntegration(req,s.env)).status,status);assert.equal(s.calls.length,0);assert.equal((await inventoryIntegration(request('q=测试'),{...s.env,WORKORDER_INVENTORY_TOKEN:''})).status,503);s.db.close()});
+test('operational whitelist preserves textual identifiers and never merges customers',async()=>{const s=setup();const response=await inventoryIntegration(request('barcode=000123'),s.env),data=await response.json();assert.equal(response.headers.get('cache-control'),'no-store');assert.equal(data.stocks.length,3);assert.equal(data.stocks[0].barcode,'000123');assert.equal(data.stocks[0].sku,'SKU-001');assert.equal(data.stocks[1].sku,null);assert.equal(data.stocks[0].palletCount,.5);assert.deepEqual([...new Set(data.stocks.map(s=>s.customerName))],['客户甲','客户乙']);assert.doesNotMatch(JSON.stringify(data),/storageRate|storage_rate|freeDays|note|updatedBy|不应公开/);s.db.close()});
+test('search is literal, paging bounded, customer filtering exact, and reads reflect updates/deletion',async()=>{const s=setup();const get=async query=>(await(await inventoryIntegration(request(query),s.env)).json());const a=await get('q=测试&limit=2');assert.equal(a.stocks.length,2);assert.equal(a.nextAfter,2);assert.deepEqual((await get('q=测试&limit=2&after=2')).stocks.map(s=>s.stockId),[3]);assert.equal((await get('sku=SKU-001')).stocks.length,1);assert.equal((await get('q=测试&customerName=客户甲')).stocks.length,2);assert.equal((await get('q=%25')).stocks.length,0);assert.equal((await get('barcode=O00123')).stocks.length,0);assert.equal((await get('')).stocks.length,0);s.db.exec("UPDATE stocks SET total_quantity=7 WHERE id=1; UPDATE pricing_catalog_items SET sku='NEW' WHERE id=1");const row=(await get('stockId=1')).stocks[0];assert.equal(row.totalQuantity,7);assert.equal(row.sku,'NEW');s.db.exec('DELETE FROM stocks WHERE id=1');assert.equal((await get('stockId=1')).stocks.length,0);assert.ok(s.calls.every(sql=>/^SELECT /i.test(sql)));s.db.close()});

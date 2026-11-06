@@ -1,0 +1,14 @@
+.map-feature{position:absolute;z-index:0;border:1px dashed #b8b19f;color:#77705f;font-size:9px;letter-spacing:1px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:default}.map-feature.aisle{background:#e4e0d3}.map-feature.area{border:2px solid #9aabb5;border-radius:8px;color:#536570;font-weight:bold;background:#d9e8f5aa}.editing .map-feature{cursor:grab;pointer-events:auto}.editing .map-feature:active{cursor:grabbing}.map-feature.selected-feature{outline:3px solid #2d5c48;outline-offset:2px;z-index:2}.feature-name{width:120px!important;padding:6px 8px!important;background:#fff!important;color:#172a22!important;border:0!important}.feature-color{width:32px!important;height:30px;padding:2px!important;border:0!important;background:transparent!important}.map-editbar .delete-map{background:#7b3e35;border-color:#9b574b}.map-editbar{flex-wrap:wrap;position:relative;z-index:4}.map-location{z-index:1}.map-feature.area+.map-location{z-index:1}@media(max-width:650px){.feature-name{min-width:95px}.map-editbar{max-height:110px;overflow:auto}}
+
+/* V29 自定义地图元素：默认不拦截地图操作，仅编辑模式可选中。 */
+.warehouse-canvas:before{display:none!important}
+.map-feature.label,.map-feature.box,.map-feature.line{appearance:none;position:absolute;box-sizing:border-box;margin:0;pointer-events:none;font-family:inherit}
+.editing .map-feature.label,.editing .map-feature.box,.editing .map-feature.line{pointer-events:auto}
+.map-feature.label{z-index:5;border:0;border-radius:7px;background:var(--feature-color);color:#fff;padding:5px 9px;font-size:15px;font-weight:900;letter-spacing:0;box-shadow:0 3px 9px #17372a2a;white-space:nowrap}
+.map-feature.box{z-index:1;border:3px solid var(--feature-color);border-radius:5px;background:transparent;color:var(--feature-color);padding:5px;align-items:flex-start;justify-content:flex-start;font-size:11px;font-weight:800;letter-spacing:0;overflow:visible}
+.map-feature.box:not(:empty){text-shadow:0 1px #fff,1px 0 #fff,0 -1px #fff,-1px 0 #fff}
+.map-feature.line{z-index:2;border:0;background:transparent;overflow:visible;padding:0;min-width:0;min-height:0}
+.map-feature.line:before{content:"";position:absolute;display:block}
+.map-feature.line.horizontal:before{left:0;right:0;top:50%;border-top:3px dashed var(--feature-color);transform:translateY(-50%)}
+.map-feature.line.vertical:before{top:0;bottom:0;left:50%;border-left:3px dashed var(--feature-color);transform:translateX(-50%)}
+.map-feature.label.selected-feature,.map-feature.box.selected-feature,.map-feature.line.selected-feature{outline:3px solid #f0a93d;outline-offset:3px;z-index:7}

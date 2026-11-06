@@ -1,0 +1,1477 @@
+.workspace {
+  color: #10281e;
+  display: grid;
+  gap: 22px;
+}
+
+.hero {
+  align-items: center;
+  background: #123c2d;
+  border-radius: 20px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 28px 32px;
+}
+
+.hero p,
+.hero h2 {
+  margin: 0;
+}
+
+.hero p {
+  color: #b8d4c8;
+  font-size: 12px;
+  letter-spacing: .22em;
+}
+
+.hero h2 {
+  font-size: clamp(28px, 4vw, 43px);
+  margin-top: 8px;
+}
+
+.hero strong {
+  color: #e9f783;
+  font-size: 28px;
+}
+
+.heroActions {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.heroLink {
+  background: #fff;
+  border-radius: 10px;
+  color: #123c2d;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 10px 14px;
+  text-decoration: none;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tabs button,
+.primaryButton,
+.secondaryButton,
+.dangerButton,
+.tinyButton {
+  border: 1px solid #c9d6cf;
+  border-radius: 12px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.tabs button {
+  background: #fff;
+  color: #52655d;
+  padding: 12px 20px;
+}
+
+.tabs button.activeTab {
+  background: #123c2d;
+  border-color: #123c2d;
+  color: #fff;
+}
+
+.domesticNotice {
+  background: #edf4f0;
+  border: 1px solid #cfddd6;
+  border-radius: 18px;
+  padding: 32px;
+}
+
+.domesticNotice h3,
+.domesticNotice p {
+  margin: 0;
+}
+
+.domesticNotice p {
+  color: #64776e;
+  margin-top: 8px;
+}
+
+.cards {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.statCard {
+  background: #fff;
+  border: 1px solid #d8e0dc;
+  border-radius: 16px;
+  padding: 18px 20px;
+}
+
+.statCard span {
+  color: #718079;
+  display: block;
+  font-size: 13px;
+}
+
+.statCard strong {
+  display: block;
+  font-size: 24px;
+  margin-top: 8px;
+}
+
+.statCard small {
+  color: #8a5b08;
+  display: block;
+  font-size: 11px;
+  margin-top: 6px;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #d8e0dc;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.billingPanel {
+  align-items: flex-end;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  padding: 20px 22px;
+}
+
+.billingPanel h3,
+.billingPanel p {
+  margin: 0;
+}
+
+.billingPanel p {
+  color: #6c7a74;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.monthFields {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.monthField span {
+  color: #50655a;
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.monthField input {
+  background: #fff;
+  border: 1px solid #ccd8d2;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: #17372a;
+  font: inherit;
+  min-height: 42px;
+  padding: 8px 10px;
+}
+
+.panelHead {
+  align-items: center;
+  border-bottom: 1px solid #e3e9e6;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  padding: 20px 22px;
+}
+
+.panelHead h3,
+.panelHead p {
+  margin: 0;
+}
+
+.detailFilters {
+  align-items: center;
+  background: #f7faf8;
+  border-bottom: 1px solid #e3e9e6;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 22px;
+}
+
+.detailFilters > b {
+  color: #42584d;
+  font-size: 13px;
+}
+
+.filterButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.filterButton,
+.activeFilter {
+  border: 1px solid #cbd8d1;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 7px 14px;
+}
+
+.filterButton {
+  background: #fff;
+  color: #51665c;
+}
+
+.activeFilter {
+  background: #123c2d;
+  border-color: #123c2d;
+  color: #fff;
+}
+
+.filterSummary {
+  color: #718079;
+  font-size: 12px;
+  margin-left: auto;
+}
+
+.customerRuleEditor {
+  align-items: flex-end;
+  border-left: 1px solid #d9e3de;
+  display: flex;
+  flex: 1 1 620px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: 4px;
+  padding-left: 14px;
+}
+
+.customerRuleEditor label {
+  flex: 1 1 170px;
+  min-width: 150px;
+}
+
+.customerRuleEditor label span {
+  color: #50655a;
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.customerRuleEditor input {
+  background: #fff;
+  border: 1px solid #ccd8d2;
+  border-radius: 9px;
+  box-sizing: border-box;
+  color: #17372a;
+  font: inherit;
+  min-height: 40px;
+  padding: 8px 10px;
+  width: 100%;
+}
+
+.customerRuleEditor input:disabled {
+  background: #edf1ef;
+  color: #7a8881;
+}
+
+.customerRuleEditor small {
+  color: #687a71;
+  flex-basis: 100%;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.collapseButton {
+  background: #fff;
+  border: 1px solid #cbd8d1;
+  border-radius: 999px;
+  color: #355247;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 7px 12px;
+}
+
+.panelHead p {
+  color: #6c7a74;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.panelActions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.exportNote {
+  color: #8a5b08;
+  flex-basis: 100%;
+  font-size: 12px;
+  line-height: 1.45;
+  max-width: 440px;
+}
+
+.primaryButton,
+.secondaryButton,
+.dangerButton,
+.tinyButton {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  padding: 10px 14px;
+  text-decoration: none;
+}
+
+.primaryButton {
+  background: #123c2d;
+  border-color: #123c2d;
+  color: #fff;
+}
+
+.secondaryButton,
+.tinyButton {
+  background: #fff;
+  color: #17372a;
+}
+
+.dangerButton {
+  background: #fff7f4;
+  border-color: #ebc4b7;
+  color: #b14b31;
+}
+
+.primaryButton:disabled,
+.secondaryButton:disabled,
+.dangerButton:disabled,
+.tinyButton:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.searchBar {
+  border: 1px solid #d5dfda;
+  border-radius: 11px;
+  min-width: min(330px, 60vw);
+  padding: 10px 13px;
+}
+
+.tableWrap {
+  overflow: auto;
+  width: 100%;
+}
+
+.catalogTable,
+.reportTable,
+.settlementTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.catalogTable,
+.reportTable {
+  min-width: 1200px;
+}
+
+.settlementTable {
+  min-width: 1200px;
+}
+
+.catalogTable th,
+.catalogTable td,
+.reportTable th,
+.reportTable td,
+.settlementTable th,
+.settlementTable td {
+  border-bottom: 1px solid #e5eae8;
+  padding: 11px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.catalogTable th,
+.reportTable th,
+.settlementTable th {
+  background: #eff4f1;
+  color: #53675d;
+  font-size: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.catalogTable input,
+.catalogTable select,
+.compactNumber,
+.customerSelect,
+.pickerInput,
+.pricingFields input,
+.pricingFields select {
+  background: #fff;
+  border: 1px solid #ccd8d2;
+  border-radius: 9px;
+  box-sizing: border-box;
+  font: inherit;
+  min-height: 40px;
+  padding: 8px 10px;
+  width: 100%;
+}
+
+.dimensionGrid {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(3, 54px);
+}
+
+.volumeField {
+  min-width: 96px;
+}
+
+.rowActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.volumeEditCell {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.inlineEditButton {
+  background: #fff;
+  border: 1px solid #c9d6cf;
+  border-radius: 8px;
+  color: #17372a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 8px;
+}
+
+.inlineEditButton:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.compactNumber {
+  min-width: 86px;
+}
+
+.settlementToolbar {
+  align-items: center;
+  background: #f7faf8;
+  border-bottom: 1px solid #e3e9e6;
+  border-top: 1px solid #e3e9e6;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 22px;
+}
+
+.pendingSummary {
+  background: #fff1d9;
+  border: 1px solid #f2d49e;
+  border-radius: 999px;
+  color: #8a5b08;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 7px 11px;
+  white-space: nowrap;
+}
+
+.selectAllSettlements {
+  align-items: center;
+  color: #4e6258;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  gap: 7px;
+}
+
+.selectAllSettlements input,
+.settlementTable input[type="checkbox"] {
+  accent-color: #123c2d;
+  height: 17px;
+  min-height: 0;
+  width: 17px;
+}
+
+.batchSettlementActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-left: auto;
+}
+
+.batchSettlementActions button {
+  border: 1px solid #cbd8d1;
+  border-radius: 9px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 8px 11px;
+}
+
+.historyPanel {
+  border-color: #cfdad5;
+}
+
+.historyToggle {
+  align-items: center;
+  background: #f7faf8;
+  border: 0;
+  color: #17372a;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  gap: 18px;
+  justify-content: space-between;
+  padding: 19px 22px;
+  text-align: left;
+  width: 100%;
+}
+
+.historyToggle:hover {
+  background: #f0f6f3;
+}
+
+.historyToggle > span:first-child {
+  min-width: 0;
+}
+
+.historyToggle b {
+  display: block;
+  font-size: 17px;
+}
+
+.historyToggle small {
+  color: #6c7a74;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.historyCounts {
+  align-items: center;
+  color: #4e6258;
+  display: flex;
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 800;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+.historyCounts i {
+  background: #e5efea;
+  border-radius: 999px;
+  color: #174c38;
+  font-style: normal;
+  padding: 7px 10px;
+}
+
+.historyContent {
+  border-top: 1px solid #e3e9e6;
+}
+
+.historyFilterBar {
+  align-items: center;
+  background: #fff;
+  border-bottom: 1px solid #e3e9e6;
+  display: flex;
+  padding: 12px 22px;
+}
+
+.historyTable {
+  min-width: 1160px;
+}
+
+.restoreButton {
+  align-items: center;
+  background: #e8f5ee;
+  border: 1px solid #bcdcca;
+  border-radius: 12px;
+  color: #14613f;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-weight: 800;
+  justify-content: center;
+  padding: 10px 14px;
+  white-space: nowrap;
+}
+
+.restoreButton:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.moneyValue {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.settlementModalBackdrop {
+  align-items: center;
+  background: rgba(15, 35, 27, .62);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 20px;
+  position: fixed;
+  z-index: 1200;
+}
+
+.settlementModal {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 28px 80px rgba(10, 30, 22, .3);
+  max-height: calc(100vh - 40px);
+  max-width: 920px;
+  overflow: auto;
+  width: 100%;
+}
+
+.settlementModal > header {
+  align-items: flex-start;
+  background: #112f24;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 28px;
+}
+
+.settlementModal > header p,
+.settlementModal > header h3 {
+  margin: 0;
+}
+
+.settlementModal > header p {
+  color: #a9c2b7;
+  font-size: 11px;
+  letter-spacing: .18em;
+}
+
+.settlementModal > header h3 {
+  font-size: 24px;
+  margin-top: 7px;
+}
+
+.settlementModal > header span {
+  color: #bfd0c8;
+  display: block;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.settlementModal > header > button {
+  align-items: center;
+  background: rgba(255, 255, 255, .1);
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 25px;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+
+.settlementEditSummary {
+  background: #f2f6f4;
+  color: #486056;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 22px;
+  padding: 14px 28px;
+}
+
+.settlementEditSummary span {
+  white-space: nowrap;
+}
+
+.settlementEditGrid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 24px 28px 14px;
+}
+
+.singleEditGrid {
+  grid-template-columns: minmax(0, 420px);
+}
+
+.settlementEditGrid label > span {
+  color: #4d6258;
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 7px;
+}
+
+.settlementEditGrid input {
+  background: #fff;
+  border: 1px solid #cbd8d1;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font: inherit;
+  min-height: 44px;
+  padding: 9px 11px;
+  width: 100%;
+}
+
+.formulaResetButton {
+  background: transparent;
+  border: 0;
+  color: #1d6a4e;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 800;
+  margin-top: 7px;
+  padding: 0;
+}
+
+.formulaResetButton:disabled {
+  color: #9aa69f;
+  cursor: default;
+}
+
+.settlementFormulaNote {
+  background: #fff7e7;
+  border: 1px solid #ecd6a9;
+  border-radius: 12px;
+  color: #79591e;
+  line-height: 1.55;
+  margin: 0 28px;
+  padding: 12px 14px;
+}
+
+.settlementModalActions {
+  display: flex;
+  gap: 9px;
+  justify-content: flex-end;
+  padding: 20px 28px 26px;
+}
+
+.settlementModalActions button {
+  border: 1px solid #cbd8d1;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  min-height: 44px;
+  padding: 10px 16px;
+}
+
+.customerSelect {
+  min-height: 42px;
+  min-width: 190px;
+}
+
+.muted {
+  color: #718079;
+  font-size: 12px;
+}
+
+.customerRuleBadge {
+  background: #e5f4ec;
+  border-radius: 999px;
+  color: #14613f;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  margin-top: 5px;
+  padding: 4px 7px;
+}
+
+.monthlyTable {
+  box-sizing: border-box;
+  min-width: 0;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.monthlyIdentifierColumn { width: 10%; }
+.monthlyStatusColumn { width: 6%; }
+.monthlyLocationColumn { width: 5%; }
+.monthlyCustomerColumn { width: 8%; }
+.monthlyProductColumn { width: 13%; }
+.monthlyDatesColumn { width: 10%; }
+.monthlyQuantityColumn { width: 7%; }
+.monthlyVolumeColumn { width: 7%; }
+.monthlyDaysColumn { width: 11%; }
+.monthlyPriceColumn { width: 13%; }
+
+.monthlyTable th,
+.monthlyTable td,
+.monthlyTable .monthlyCellContent {
+  white-space: normal;
+}
+
+.monthlyTable th,
+.monthlyTable td {
+  overflow-wrap: anywhere;
+}
+
+.monthlyTable .statusStack {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.monthlyTable .priceSummary {
+  font-variant-numeric: tabular-nums;
+}
+
+.monthlyCellContent {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.compactStack,
+.priceSummary {
+  display: grid;
+  gap: 4px;
+  line-height: 1.35;
+}
+
+.compactStack > span,
+.compactStack > b {
+  min-width: 0;
+}
+
+.compactLine {
+  white-space: nowrap;
+}
+
+.priceGrid {
+  display: grid;
+  gap: 7px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.priceGrid > span {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.priceGrid small {
+  color: #718079;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.priceGrid b {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.priceMeta {
+  line-height: 1.35;
+}
+
+.statusStack {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.statusBadge,
+.settlementBadge {
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  padding: 7px 10px;
+  white-space: nowrap;
+}
+
+.inStockBadge {
+  background: #dff3e8;
+  color: #11613f;
+}
+
+.outboundBadge {
+  background: #e7ecf2;
+  color: #475868;
+}
+
+.settlementBadge {
+  border: 1px solid transparent;
+  padding: 5px 8px;
+}
+
+.pendingBadge {
+  background: #fff1d9;
+  border-color: #f2d49e;
+  color: #8a5b08;
+}
+
+.settledBadge {
+  background: #edf1ef;
+  border-color: #d6dfda;
+  color: #5d6d65;
+}
+
+.cancelledBadge {
+  background: #fff0eb;
+  border-color: #efc6ba;
+  color: #a74329;
+}
+
+.emptyState {
+  color: #728078;
+  padding: 30px;
+  text-align: center;
+}
+
+.error,
+.success {
+  border-radius: 10px;
+  font-size: 13px;
+  margin: 0 22px 14px;
+  padding: 10px 13px;
+}
+
+.error {
+  background: #fff0eb;
+  color: #a74329;
+}
+
+.success {
+  background: #ebf7f0;
+  color: #14613f;
+}
+
+.picker {
+  position: relative;
+}
+
+.pickerLabel {
+  color: #344b40;
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.pickerInputWrap {
+  position: relative;
+}
+
+.pickerInput {
+  padding-right: 40px;
+}
+
+.pickerSpinner {
+  color: #567064;
+  position: absolute;
+  right: 12px;
+  top: 11px;
+}
+
+.pickerResults {
+  background: #fff;
+  border: 1px solid #ccd8d2;
+  border-radius: 12px;
+  box-shadow: 0 16px 42px rgba(16, 40, 30, .16);
+  left: 0;
+  max-height: 310px;
+  overflow: auto;
+  padding: 6px;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 20;
+}
+
+.pickerResult {
+  background: #fff;
+  border: 0;
+  border-radius: 9px;
+  cursor: pointer;
+  display: block;
+  padding: 10px 11px;
+  text-align: left;
+  width: 100%;
+}
+
+.pickerResult:hover,
+.pickerResult:focus-visible {
+  background: #edf6f1;
+  outline: none;
+}
+
+.pickerResult b,
+.pickerResult span,
+.pickerResult small {
+  display: block;
+}
+
+.pickerResult span,
+.pickerResult small {
+  color: #66776e;
+  margin-top: 3px;
+}
+
+.pickerEmpty {
+  color: #75827c;
+  margin: 0;
+  padding: 13px;
+}
+
+.pricingFields {
+  background: #f1f6f3;
+  border: 1px solid #d1ded7;
+  border-radius: 15px;
+  display: grid;
+  gap: 12px;
+  padding: 12px 14px;
+}
+
+.returnCheck {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: row;
+  gap: 6px;
+  padding: 0;
+  white-space: nowrap;
+  width: auto;
+}
+
+.returnCheck input {
+  accent-color: #123c2d;
+  flex: 0 0 auto;
+  height: 17px;
+  margin: 0;
+  min-height: 0;
+  padding: 0;
+  width: 17px;
+}
+
+.returnCheck span {
+  display: inline;
+}
+
+.returnCheck b {
+  color: #17372a;
+}
+
+.returnCheck small {
+  color: #6c7d74;
+  font-size: 12px;
+}
+
+.sourceToggle {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.overrideGrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+}
+
+.overrideGrid label span {
+  color: #50655a;
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.overrideHint {
+  color: #6c7d74;
+  font-size: 12px;
+  margin: 0;
+}
+
+.returnPricingGrid {
+  align-items: start;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.catalogPickerPane {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.itemBillingBadge {
+  background: #e3efe8;
+  border-radius: 999px;
+  color: #176044;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  justify-self: start;
+  padding: 6px 10px;
+}
+
+.dimensionCalculator {
+  background: #fff;
+  border: 1px solid #cbdad2;
+  border-radius: 12px;
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  padding: 10px;
+}
+
+.dimensionUnitToggle {
+  display: inline-grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-self: start;
+}
+
+.dimensionUnitToggle button {
+  background: #f3f7f5;
+  border: 1px solid #c9d7d0;
+  color: #496057;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  min-height: 32px;
+  padding: 5px 8px;
+}
+
+.dimensionUnitToggle button:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.dimensionUnitToggle button:last-child {
+  border-left: 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.dimensionUnitToggle button.dimensionUnitSelected {
+  background: #123c2d;
+  border-color: #123c2d;
+  color: #fff;
+}
+
+.manualDimensionGrid {
+  display: grid;
+  gap: 7px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.manualDimensionGrid label,
+.calculatedVolume {
+  min-width: 0;
+}
+
+.calculatedVolume {
+  grid-column: 1 / -1;
+}
+
+.manualDimensionGrid label > span,
+.calculatedVolume > span {
+  color: #50655a;
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  margin-bottom: 5px;
+  white-space: nowrap;
+}
+
+@media (max-width: 1200px) {
+  .monthlyTable {
+    display: block;
+    min-width: 0;
+    padding: 12px;
+    width: 100%;
+  }
+
+  .monthlyTable colgroup {
+    display: none;
+  }
+
+  .monthlyTable thead {
+    display: none;
+  }
+
+  .monthlyTable tbody,
+  .monthlyTable tr {
+    display: block;
+    width: 100%;
+  }
+
+  .monthlyTable tr {
+    border: 1px solid #d9e3de;
+    border-radius: 14px;
+    box-shadow: 0 5px 14px rgba(16, 40, 30, .05);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  .monthlyTable td {
+    align-items: start;
+    border-bottom: 1px solid #edf1ef;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 110px minmax(0, 1fr);
+    padding: 10px 12px;
+    width: auto;
+  }
+
+  .monthlyTable td:last-child {
+    border-bottom: 0;
+  }
+
+  .monthlyTable td::before {
+    color: #718079;
+    content: attr(data-label);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .monthlyTable .monthlyCellContent {
+    overflow-wrap: anywhere;
+    white-space: normal;
+    width: 100%;
+  }
+
+  .monthlyTable .statusStack {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .panelHead,
+  .billingPanel {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .heroActions {
+    align-items: flex-start;
+  }
+
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .overrideGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .searchBar {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .monthFields {
+    width: 100%;
+  }
+
+  .customerRuleEditor {
+    border-left: 0;
+    border-top: 1px solid #d9e3de;
+    flex-basis: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: 12px;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .filterSummary {
+    margin-left: 0;
+  }
+
+  .settlementToolbar,
+  .settlementEditGrid {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  .batchSettlementActions {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .batchSettlementActions button {
+    flex: 1 1 140px;
+  }
+
+  .historyToggle {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .historyCounts {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .settlementModalBackdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .settlementModal {
+    border-radius: 18px 18px 0 0;
+    max-height: 94vh;
+  }
+
+  .settlementEditSummary,
+  .settlementEditGrid,
+  .settlementModalActions,
+  .settlementModal > header {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .settlementFormulaNote {
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+
+  .settlementModalActions {
+    flex-wrap: wrap;
+  }
+
+  .settlementModalActions button {
+    flex: 1 1 130px;
+  }
+
+  .customerRuleEditor label,
+  .customerRuleEditor > button {
+    flex-basis: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero,
+  .panelHead,
+  .billingPanel {
+    padding: 20px;
+  }
+
+  .monthField,
+  .monthField input,
+  .monthFields > button {
+    width: 100%;
+  }
+}
+
+.customerPicker { width: 100%; min-width: 0; border: 1px solid #cbd9d2; border-radius: 12px; background: white; }
+.customerPicker summary { padding: 14px 16px; cursor: pointer; overflow-wrap: anywhere; }
+.customerChoices { display: grid; gap: 8px; max-height: 280px; overflow: auto; padding: 12px; border-top: 1px solid #dce5df; }
+.customerChoices label { display: flex; flex-direction: row; font-size: 14px; align-items: center; gap: 10px; padding: 8px; cursor: pointer; overflow-wrap: anywhere; }
+.customerChoices input { width: 18px; height: 18px; flex-shrink: 0; accent-color: #163c2e; }
+
+.customerChoices label span { font-size: 14px; color: #163c2e; }
+
+.customerBatchActions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; width: 100%; }
+.customerBatchActions label { display: flex; flex-direction: row; align-items: center; gap: 8px; }
+.customerBatchActions input, .statusStack input[type="checkbox"] { width: 18px; height: 18px; accent-color: #163c2e; }
+
+.productDetail { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; line-height: 1.5; font-weight: 400; }
+.productDetail strong { font-weight: 500; color: #62766d; }
+
+/* Keep routine billing ahead of seldom-used defaults. */
+.hero{padding:20px 24px}.hero h2{font-size:28px}.hero strong{font-size:22px}.workspace{gap:16px}.defaultSettings{padding:14px 20px}.defaultSettings summary{cursor:pointer;font-size:14px;font-weight:700;line-height:1.5}.defaultSettings[open]{padding-bottom:20px}.defaultSettings .overrideGrid{margin-top:16px}.defaultSettings p{font-size:13px}.statCard small{font-size:12px}
+@media(max-width:650px){.hero{padding:16px 18px;gap:12px}.hero h2{font-size:24px}.hero strong{font-size:18px}.heroActions{gap:8px}.heroLink{font-size:12px;padding:8px 10px}.defaultSettings{padding:12px 14px}.workspace input,.workspace select,.workspace textarea{font-size:16px}.billingPanel{padding:16px;gap:14px}.statCard{padding:14px}.statCard strong{font-size:23px}.statCard span,.monthField span{font-size:13px}}
+
+/* Compact working surface: one heading, light rules, and dense readable rows. */
+.workspace{gap:12px;font-size:14px}
+.hero{padding:12px 0;background:transparent;color:#17372a;border-radius:0;border-bottom:1px solid #dbe4de;gap:14px}
+.hero p{color:#6a7c71;font-size:10px}.hero h2{font-size:24px;margin-top:3px}
+.hero strong{color:#24674c;font-size:20px}.heroActions{gap:5px}.heroLink{border:1px solid #d3dfd7;border-radius:5px;padding:7px 10px;font-size:12px}
+.tabs{gap:6px}.tabs button{padding:7px 13px;border-radius:5px;min-height:36px;font-size:14px}
+.defaultSettings{padding:10px 12px;border-radius:6px}.defaultSettings[open]{padding-bottom:12px}.defaultSettings .overrideGrid{margin-top:10px}
+.cards{gap:0;border:1px solid #dde5df;border-radius:6px;background:#f7faf7;overflow:hidden}
+.statCard{padding:10px 14px;border:0;border-right:1px solid #dde5df;border-radius:0;background:transparent}
+.statCard:last-child{border-right:0}.statCard strong{margin-top:3px;font-size:23px}.statCard small{margin-top:3px}
+.panel{border-radius:7px}.billingPanel,.panelHead{padding:12px 14px;gap:12px}
+.billingPanel h3,.panelHead h3{font-size:17px}.billingPanel p,.panelHead p{margin-top:3px;font-size:12px}
+.monthFields{gap:8px}.monthField{gap:4px}.monthField input,.monthFields>button{min-height:36px;padding:7px 9px;border-radius:5px}
+.primaryButton,.secondaryButton,.dangerButton,.tinyButton{min-height:36px;padding:7px 11px;border-radius:5px;font-size:13px}
+.customerPicker{border-radius:5px}.customerPicker summary{padding:8px 11px;min-height:36px}
+.customerChoices{gap:3px;padding:7px}.customerChoices label{padding:6px;min-height:34px}
+.detailFilters,.settlementToolbar,.historyFilterBar{padding:9px 14px;gap:8px;background:#fafcf9}
+.filterButton,.activeFilter,.collapseButton{padding:6px 10px;border-radius:5px;min-height:32px}
+.customerRuleEditor{flex:1 1 460px;gap:7px;padding-left:10px}
+.customerRuleEditor label{flex:0 1 150px;min-width:120px}
+.customerRuleEditor label span{font-size:12px;margin-bottom:3px}.customerRuleEditor input{min-height:36px;padding:7px 9px;border-radius:5px}
+.customerRuleEditor small{font-size:12px}.customerBatchActions{gap:8px}
+.catalogTable th,.catalogTable td,.reportTable th,.reportTable td,.settlementTable th,.settlementTable td{padding:9px 10px;font-size:13px;line-height:1.4}
+.monthlyTable th,.monthlyTable td{padding:8px 9px}.monthlyCellContent{font-size:13px}
+.productDetail{font-size:12px;line-height:1.4}.compactStack,.priceSummary{gap:3px}
+.statusBadge,.settlementBadge{font-size:11px;padding:5px 7px}
+.customerRuleBadge{border-radius:5px;padding:3px 5px;font-size:11px}
+.historyToggle{padding:12px 14px;gap:10px}.historyToggle b{font-size:16px}.historyCounts{gap:8px}
+.historyToggle small{margin-top:3px}.historyCounts i{padding:5px 8px;border-radius:5px}
+.settlementModal{border-radius:10px}.settlementModal>header{padding:16px 20px}.settlementModal>header h3{font-size:22px;margin-top:3px}
+.settlementEditSummary{padding:10px 20px}.settlementEditGrid{padding:16px 20px 10px;gap:12px}
+.settlementFormulaNote{margin:0 20px;padding:9px 11px;border-radius:6px}.settlementModalActions{padding:14px 20px 18px}
+.pricingFields{background:transparent;border:0;border-top:1px solid #dde5df;border-radius:0;padding:10px 0;gap:9px}
+.dimensionCalculator{padding:8px;border-radius:5px;gap:6px}.itemBillingBadge{border-radius:5px;padding:4px 7px}
+@media(max-width:900px){.customerRuleEditor{border-left:0;padding-left:0;flex-basis:100%;padding-top:8px}.customerRuleEditor label{flex:1 1 140px}}
+@media(max-width:650px){
+ .workspace{gap:10px}.hero{padding:10px 0;gap:8px}.hero h2{font-size:22px}.heroActions{flex-direction:row;align-items:center;flex-wrap:wrap;gap:8px}
+ .tabs button,.primaryButton,.secondaryButton,.dangerButton,.tinyButton{min-height:40px;padding:8px 11px}
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr))}.statCard{padding:9px 11px;border-bottom:1px solid #dde5df}
+ .statCard:nth-child(2n){border-right:0}.statCard:nth-child(n+3){border-bottom:0}.statCard strong{font-size:21px}.statCard span{font-size:12px}
+ .billingPanel,.panelHead{padding:12px;gap:10px}.monthFields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .monthField,.monthField input{width:100%;min-width:0}.monthFields>button{grid-column:1/-1;width:100%}
+ .monthField input,.customerRuleEditor input,.workspace input:not([type=checkbox]),.workspace select,.workspace textarea{font-size:16px;min-height:40px}
+ .customerRuleEditor label{flex-basis:calc(50% - 5px);min-width:0;width:auto}.customerRuleEditor>button{flex-basis:100%;width:100%}
+ .detailFilters,.settlementToolbar,.historyFilterBar{padding:9px 12px}.filterButton,.activeFilter,.collapseButton{min-height:40px}
+ .monthlyTable{padding:8px}.monthlyTable tr{margin-bottom:8px;border-radius:5px;box-shadow:none}
+ .monthlyTable td{padding:8px 9px;gap:8px;grid-template-columns:84px minmax(0,1fr)}
+ .customerPicker summary{min-height:40px}.customerChoices label{min-height:40px}
+ .settlementModal{border-radius:10px 10px 0 0}.settlementModal>header,.settlementEditSummary,.settlementEditGrid,.settlementModalActions{padding-left:14px;padding-right:14px}
+ .settlementFormulaNote{margin:0 14px}.settlementModalActions button{min-height:44px}
+}
+
+.productSummary{background:#edf5f1}.productSummaryContent{display:flex;justify-content:space-between;gap:16px;padding:12px}.productSummaryContent>div{display:flex;flex-direction:column;gap:6px;min-width:0}.productSummaryContent b,.productSummaryContent span{overflow-wrap:anywhere}.productSummaryContent button{padding:8px 12px;border:1px solid #b9d4c6;border-radius:6px;background:white;cursor:pointer}

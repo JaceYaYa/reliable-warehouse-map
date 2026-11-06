@@ -1,0 +1,350 @@
+.page {
+  background: #f3f2ed;
+  color: #10281e;
+  min-height: 100vh;
+  padding: 28px;
+}
+
+.shell {
+  display: grid;
+  gap: 18px;
+  margin: 0 auto;
+  max-width: 1500px;
+}
+
+.hero {
+  align-items: center;
+  background: #123c2d;
+  border-radius: 20px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 28px 32px;
+}
+
+.hero p,
+.hero h1,
+.hero span {
+  margin: 0;
+}
+
+.hero p {
+  color: #b8d4c8;
+  font-size: 11px;
+  letter-spacing: .2em;
+}
+
+.hero h1 {
+  font-size: clamp(27px, 4vw, 42px);
+  margin-top: 7px;
+}
+
+.hero span {
+  color: #c7d9d1;
+  display: block;
+  margin-top: 7px;
+}
+
+.hero a {
+  background: #fff;
+  border-radius: 10px;
+  color: #123c2d;
+  font-weight: 800;
+  padding: 11px 15px;
+  text-decoration: none;
+}
+
+.workflow {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.workflow article {
+  background: #fff;
+  border: 1px solid #d8e0dc;
+  border-radius: 14px;
+  padding: 17px 19px;
+}
+
+.workflow b,
+.workflow span {
+  display: block;
+}
+
+.workflow span {
+  color: #64776e;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #d8e0dc;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.toolbar,
+.searchHead {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  padding: 21px 23px;
+}
+
+.toolbar h2,
+.toolbar p,
+.searchHead h2,
+.searchHead p {
+  margin: 0;
+}
+
+.toolbar p,
+.searchHead p {
+  color: #687970;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.primaryButton,
+.secondaryButton,
+.dangerButton,
+.pagination button,
+.searchBox button {
+  align-items: center;
+  border: 1px solid #cad6d0;
+  border-radius: 11px;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-weight: 800;
+  justify-content: center;
+  padding: 10px 14px;
+  text-decoration: none;
+}
+
+.primaryButton {
+  background: #123c2d;
+  border-color: #123c2d;
+  color: #fff;
+}
+
+.secondaryButton,
+.pagination button,
+.searchBox button {
+  background: #fff;
+  color: #17372a;
+}
+
+.dangerButton {
+  background: #fff5f1;
+  border-color: #ebc2b5;
+  color: #ad432b;
+}
+
+.actions input {
+  display: none;
+}
+
+.actions button:disabled,
+.actions label:has(input:disabled),
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.searchHead {
+  border-bottom: 1px solid #e2e8e5;
+}
+
+.searchBox {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  min-width: min(520px, 55vw);
+}
+
+.searchBox input {
+  border: 1px solid #cfdbd5;
+  border-radius: 11px;
+  font: inherit;
+  min-height: 43px;
+  padding: 10px 13px;
+  width: 100%;
+}
+
+.resultMeta {
+  color: #6b7b73;
+  font-size: 12px;
+  padding: 12px 23px 0;
+}
+
+.resultList {
+  display: grid;
+  gap: 8px;
+  padding: 12px 23px 20px;
+}
+
+.resultRow {
+  align-items: center;
+  background: #f7f9f8;
+  border: 1px solid #e0e7e3;
+  border-radius: 12px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1.25fr 1.1fr 1.25fr 1.25fr .9fr;
+  padding: 14px 16px;
+}
+
+.resultRow b,
+.resultRow span {
+  display: block;
+}
+
+.resultRow b {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.resultRow span {
+  color: #6d7c74;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.pagination {
+  align-items: center;
+  border-top: 1px solid #e2e8e5;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: 16px;
+}
+
+.pagination span {
+  color: #64776e;
+  font-size: 13px;
+}
+
+.empty {
+  color: #728078;
+  margin: 0;
+  padding: 35px;
+  text-align: center;
+}
+
+.error,
+.success {
+  border-radius: 11px;
+  margin: 0;
+  padding: 12px 15px;
+}
+
+.error {
+  background: #fff0eb;
+  color: #a74329;
+}
+
+.success {
+  background: #e8f6ee;
+  color: #14613f;
+}
+
+.gate {
+  align-items: center;
+  background: #f3f2ed;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.gate section {
+  background: #fff;
+  border: 1px solid #d8e0dc;
+  border-radius: 18px;
+  max-width: 520px;
+  padding: 34px;
+  text-align: center;
+}
+
+.gate h1 {
+  margin: 0;
+}
+
+.gate p {
+  color: #65766d;
+  line-height: 1.7;
+}
+
+.gate a {
+  color: #123c2d;
+  font-weight: 800;
+}
+
+@media (max-width: 1050px) {
+  .resultRow {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding: 14px;
+  }
+
+  .hero,
+  .toolbar,
+  .searchHead {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .workflow,
+  .resultRow {
+    grid-template-columns: 1fr;
+  }
+
+  .actions,
+  .searchBox {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* Catalog rows share the compact rhythm of stock and billing pages. */
+.page{padding:20px;background:#f3f5f1;font-size:14px}.shell{gap:12px}
+.hero{padding:16px 20px;border-radius:8px}.hero h1{font-size:27px;margin-top:3px}.hero span{font-size:13px;margin-top:4px}
+.hero a{border-radius:5px;padding:8px 12px;min-height:36px;font-size:13px}
+.workflow{gap:0;border:1px solid #dce5de;border-radius:6px;overflow:hidden;background:#fff}
+.workflow article{padding:10px 14px;border:0;border-right:1px solid #dce5de;border-radius:0;background:transparent}
+.workflow article:last-child{border-right:0}.workflow span{margin-top:3px;font-size:12px}
+.panel{border-radius:7px}.toolbar,.searchHead{padding:12px 14px;gap:12px}
+.toolbar h2,.searchHead h2{font-size:18px}.toolbar p,.searchHead p{font-size:12px;margin-top:3px}
+.primaryButton,.secondaryButton,.dangerButton,.pagination button,.searchBox button{padding:7px 11px;border-radius:5px;min-height:36px;font-size:13px}
+.actions{gap:7px}.searchBox{min-width:min(460px,50vw)}.searchBox input{min-height:36px;padding:7px 10px;border-radius:5px}
+.resultMeta{padding:9px 14px 0}.resultList{gap:0;padding:6px 14px 12px}
+.resultRow{gap:12px;padding:10px 0;border:0;border-bottom:1px solid #e1e8e2;border-radius:0;background:transparent}
+.resultRow:last-child{border-bottom:0}.resultRow span{margin-top:3px;line-height:1.4}
+.pagination{padding:10px;gap:9px}.empty{padding:22px}.error,.success{padding:9px 12px;border-radius:5px}
+@media(max-width:760px){
+ .page{padding:12px}.hero{padding:14px;gap:10px}.hero h1{font-size:23px}.shell{gap:10px}
+ .workflow{grid-template-columns:1fr}.workflow article{border-right:0;border-bottom:1px solid #e1e8e2;padding:9px 12px}.workflow article:last-child{border-bottom:0}
+ .toolbar,.searchHead{padding:12px;gap:9px}.searchBox{min-width:0;width:100%}.searchBox input{font-size:16px;min-height:40px;min-width:0}
+ .primaryButton,.secondaryButton,.dangerButton,.pagination button,.searchBox button{min-height:40px;padding:8px 11px}
+ .resultRow{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px;padding:10px 0}.resultRow>div{min-width:0}
+ .resultRow>div:first-child{grid-column:1/-1}.resultList{padding:4px 12px 10px}
+}
+
+/* Long product names and lookup aliases remain readable within their columns. */
+.resultRow>div{min-width:0}
+.resultRow b,.resultRow span{overflow-wrap:anywhere;white-space:pre-wrap}

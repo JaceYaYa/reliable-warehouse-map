@@ -1,0 +1,148 @@
+.badge {
+  background: transparent;
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.badge:hover {
+  background: #dff0871a;
+  border-color: #dff087;
+}
+
+.badge:focus-visible {
+  outline: 2px solid #dff087;
+  outline-offset: 3px;
+}
+
+.dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(720px, calc(100vw - 32px));
+  max-height: 86dvh;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: #fff;
+  color: #15211c;
+  box-shadow: 0 24px 80px #14241e40;
+  overflow: hidden;
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.dialog::backdrop {
+  background: #14241e99;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 28px;
+  background: #14241e;
+  color: #fff;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.header p {
+  margin: 6px 0 0;
+  color: #bdcbc3;
+  font-size: 13px;
+}
+
+.close {
+  flex-shrink: 0;
+  border: 1px solid #496056;
+  border-radius: 8px;
+  padding: 9px 16px;
+  background: #263a32;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.close:hover {
+  background: #3c5448;
+}
+
+.close:focus-visible {
+  outline: 2px solid #dff087;
+  outline-offset: 3px;
+}
+
+.entries {
+  max-height: calc(86dvh - 111px);
+  padding: 0 28px 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.entry {
+  padding: 20px 0;
+  border-bottom: 1px solid #e1e7e2;
+}
+
+.entryHeading {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.entryHeading h3 {
+  margin: 0;
+  color: #1d6a4e;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.entryHeading time {
+  color: #6e7872;
+  font-size: 13px;
+}
+
+.entry ul {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  list-style: disc;
+  line-height: 1.8;
+}
+
+.entry li + li {
+  margin-top: 4px;
+}
+
+.footnote {
+  margin: 18px 0 0;
+  color: #6e7872;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .dialog {
+    width: calc(100vw - 24px);
+    max-height: 88dvh;
+    border-radius: 14px;
+  }
+
+  .header {
+    padding: 20px;
+  }
+
+  .entries {
+    max-height: calc(88dvh - 103px);
+    padding: 0 20px 20px;
+  }
+}

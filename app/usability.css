@@ -1,0 +1,204 @@
+/* Shared visual rhythm; map geometry and stock calculations remain independent. */
+:root{--paper:#f3f5f1;--line:#d8e2db;--muted:#61756a}
+body{font-family:Arial,"Microsoft YaHei",sans-serif;line-height:1.5}
+button,a,input,select,textarea,summary{touch-action:manipulation}
+button:not(:disabled),a,summary{transition:background-color .15s,border-color .15s}
+button:not(:disabled):hover{filter:brightness(.96)}
+:where(button,a,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px solid #bf7900;outline-offset:3px}
+input,select,textarea{color:#18392a}
+.topbar{height:auto!important;min-height:100px;padding:20px 32px;gap:24px;align-items:center}
+.topbar h1{font-size:30px;line-height:1.3;margin:3px 0 0}
+.topbar .brand-block{min-width:0;gap:14px}
+.topbar .eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;letter-spacing:2px;font-size:11px}
+.topbar .site-version{min-height:36px;min-width:60px;padding:5px 9px;font-size:12px;line-height:1}
+.topbar .account-box{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px;max-width:440px;min-width:0}
+.topbar .account-name{font-size:13px;white-space:nowrap;color:#d5e2da}
+.topbar .account-box>button,.account-menu>summary{min-height:40px;border:1px solid #6e8577;border-radius:8px;background:#ffffff0c;color:#fff;padding:8px 13px;font-size:14px;white-space:nowrap;cursor:pointer}
+.account-menu{position:relative;flex:none}
+.account-menu>summary{list-style:none;display:flex;align-items:center;gap:10px}
+.account-menu>summary:after{content:'⌄';color:#cfdfd4}
+.account-menu>summary::-webkit-details-marker{display:none}
+.account-menu>div{position:absolute;z-index:120;right:0;top:calc(100% + 8px);width:200px;padding:8px;background:#fff;border:1px solid #d3dfd6;border-radius:12px;box-shadow:0 12px 35px #0c291f30;display:grid;gap:4px}
+.topbar .account-menu a,.topbar .account-menu button{display:block;width:100%;padding:11px 13px;min-height:42px;border:0;border-radius:7px;background:#fff;color:#214432;font-size:14px;text-decoration:none;text-align:left;white-space:nowrap}
+.topbar .account-menu a:hover,.topbar .account-menu button:hover{background:#edf4ef}
+.topbar .sync{width:100%;font-size:12px;white-space:normal;justify-content:flex-end;color:#c5d8cc}
+.summary{gap:16px;padding-top:24px;padding-bottom:24px}
+.summary article{border-radius:14px;box-shadow:0 3px 12px #18392a04}
+.workspace{padding-top:0;gap:20px}
+.map-panel,.editor{border-radius:16px;box-shadow:0 4px 18px #16342a05}
+.tools{gap:14px;align-items:center}
+.tools>nav{display:flex;gap:4px;flex-wrap:wrap;padding:4px;background:#eef3ee;border-radius:12px}
+.tools>nav button{min-height:44px;padding:10px 18px;border-radius:9px;font-size:15px;line-height:1.3}
+.goods-entry-tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.goods-entry-tools button{min-height:44px;padding:10px 20px;font-size:15px;border-radius:10px}
+.tools .tool-right{flex-wrap:wrap;gap:9px}
+.tools .configure{min-height:40px;font-size:13px;padding:9px 12px}
+.tools .search{display:flex!important;flex-direction:row!important;align-items:center;gap:8px;min-width:160px;min-height:42px;padding:0 12px!important;border-radius:9px;box-sizing:border-box;flex:1}
+.tools .search input{width:100%;min-width:0;height:40px;margin:0;padding:0!important;font-size:14px;border:0!important;background:transparent;box-shadow:none}
+.tools .search span{font-size:24px;line-height:1}
+.editor-head,.editor .note{font-size:14px}
+.editor label,.editor .form-grid label,.editor .pricing-field span{font-size:14px}
+.editor input:not([type=radio]):not([type=checkbox]),.editor select,.editor textarea{font-size:14px;min-height:42px;padding:10px 12px}
+.editor small,.storage-duration small,.stock-tab-meta,.recent-movement small{font-size:12px;line-height:1.5}
+.editor button,.stock-entry-form button{min-height:40px;font-size:14px}
+.editor .stock-tab-select{padding:12px;line-height:1.5}
+.editor .stock-tab-product{font-size:14px}
+.storage-duration{padding:14px 16px!important}
+.storage-duration strong{font-size:26px!important}
+.stock-entry-form .stock-layer-field{margin:14px 0}
+.mini-map nav button{width:40px;height:40px;font-size:20px}
+.mini-map header b{font-size:13px}.mini-map header span{font-size:11px}
+.list-editor-drawer .list-editor-close{position:sticky;display:block;top:0;right:auto;margin:0 0 10px auto;z-index:4;width:40px;height:40px}
+.logs-page,.backup-page,.health-page{max-width:1320px;margin:auto;padding:30px 24px}
+.logs-page header,.backup-page header,.health-page header{gap:20px;align-items:center}
+.logs-page header h1,.backup-page header h1,.health-page header h1{font-size:28px;line-height:1.35}
+.logs-page header span,.backup-page header span,.health-page header span{font-size:14px}
+.logs-page header a,.backup-page header a,.health-page header a{font-size:14px;min-height:40px;padding:10px 14px;border-radius:9px}
+.logs-page button,.backup-page button,.health-page button{min-height:42px;font-size:14px;line-height:1.4}
+.log-empty button,.backup-list>button,.backup-list [role=alert] button,.health-empty button{border:1px solid #b7cebf;border-radius:9px;padding:10px 16px;background:#fff;color:#214f37;font-weight:700;cursor:pointer}
+.logs-page input,.backup-page input,.backup-page textarea{font-size:14px;min-height:42px}
+.log-row{font-size:14px;line-height:1.6;padding:14px 16px}
+.log-row small,.backup-page small,.backup-list article span,.health-grid small,.health-policy div,.backup-page p{font-size:13px;line-height:1.6}
+.health-grid article{padding:22px;border-radius:14px}
+.health-grid article>span{font-size:14px}
+.health-grid article>strong{font-size:30px}
+.record-pagination{gap:14px;margin-top:20px;font-size:14px;flex-wrap:wrap}
+.warehouse-test-banner{font-size:13px;line-height:1.5;padding:10px 20px;gap:12px}
+.goods-placement-actions,.goods-draft-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.goods-placement-actions{justify-content:flex-end}
+.goods-review:focus{outline:2px solid #a8c6b3;outline-offset:3px}
+.modal-backdrop label,.modal-backdrop .permission-grid label,.scanner-modal span{font-size:14px;line-height:1.5}
+.modal-backdrop input:not([type=radio]):not([type=checkbox]),.modal-backdrop select,.modal-backdrop textarea{font-size:14px;min-height:42px}
+.modal-backdrop button,.scanner-modal button{min-height:40px;font-size:14px}
+.modal-backdrop small,.modal-backdrop .user-list span,.modal-backdrop .config-head span{font-size:12px;line-height:1.5}
+.modal-backdrop h2{font-size:24px;line-height:1.4}
+.modal-backdrop,.modal-backdrop.stock-move-backdrop,.goods-backdrop{z-index:1200}
+.scanner-backdrop{z-index:1300}
+.map-view-controls button{min-width:40px;min-height:40px;font-size:14px}
+@media(max-width:900px){
+ .topbar{padding:18px 20px;flex-wrap:wrap;gap:14px}
+ .topbar .account-box{max-width:none;justify-content:flex-start}
+ .topbar .sync{justify-content:flex-start}
+ .tools .tool-right{width:100%;display:flex}
+}
+@media(max-width:650px){
+ .topbar{padding:16px;gap:14px;display:block}
+ .topbar h1{font-size:23px;white-space:nowrap}
+ .topbar .brand-logo{width:46px;height:46px}
+ .topbar .eyebrow{font-size:9px;letter-spacing:1.3px;gap:8px;flex-wrap:nowrap}
+ .topbar .account-box{margin-top:13px;gap:8px;display:flex;width:100%}
+ .topbar .account-name{margin-right:auto;font-size:12px}
+ .topbar .account-box>button,.account-menu>summary{min-height:40px;font-size:13px;padding:8px 10px}
+ .account-menu>div{width:190px;right:-42px}
+ .topbar .sync{margin-top:2px;font-size:12px}
+ .summary{padding:16px;gap:10px}.summary article{padding:14px!important}.summary article span{font-size:13px!important}.summary article strong{font-size:24px!important}
+ .workspace{padding:0 12px 20px;gap:12px}.map-panel{padding:14px!important}
+ .tools{gap:12px;display:flex;flex-direction:column;align-items:stretch}
+ .workspace .map-panel .tools>nav{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;width:100%;box-sizing:border-box}
+ .tools>nav button{font-size:13px;padding:10px 4px!important;min-width:0;white-space:nowrap;min-height:44px}
+ .goods-entry-tools{margin-bottom:12px;gap:8px}.goods-entry-tools button{flex:1;padding:10px 12px}
+ .tools .tool-right{gap:8px}.tools .search{flex-basis:100%;width:100%;min-width:0;order:-1}
+ .tools .search input,.editor input:not([type=radio]):not([type=checkbox]),.editor select,.editor textarea,.logs-page input,.backup-page input,.backup-page textarea{font-size:16px}
+ .editor{padding:18px!important}.editor label{font-size:14px}.editor .stock-tab-meta{font-size:12px}
+ .mini-map nav button{width:40px;height:40px}.mini-map header b{font-size:13px}
+ .logs-page,.backup-page,.health-page{padding:20px 14px}
+ .logs-page header,.backup-page header,.health-page header{align-items:flex-start;gap:14px;flex-direction:column}
+ .logs-page header h1,.backup-page header h1,.health-page header h1{font-size:25px}
+ .log-tools{flex-wrap:wrap;gap:10px}.log-tools form{min-width:0;width:100%}.log-tools input{width:100%;min-width:0}
+ .log-row{font-size:14px;padding:14px}.log-row p{line-height:1.65}
+ .warehouse-test-banner{padding:8px 14px;font-size:12px;gap:5px 10px}.warehouse-test-banner span{flex-basis:100%;order:3}
+ .topbar .account-box>.account-name{display:block}.topbar .account-box .sync{display:flex}
+ .modal-backdrop input:not([type=radio]):not([type=checkbox]),.modal-backdrop select,.modal-backdrop textarea{font-size:16px}
+}
+/* Keep the current page identifiable even when its navigation action is disabled. */
+.workspace .tools nav button.active:disabled { background: #17372a !important; color: #fff !important; opacity: 1 !important; }
+.login-card label { font-size: 14px; line-height: 1.5; }
+.login-card input { font-size: 16px; min-height: 44px; }
+.login-card > span, .login-card .login-error { font-size: 14px; line-height: 1.6; }
+.login-card button { min-height: 44px; font-size: 16px; }
+
+/* Operational pages use rows and light dividers rather than nested large cards. */
+.topbar{min-height:80px;padding:12px 24px;gap:16px}
+.topbar h1{font-size:26px}.topbar .sync{padding:5px 11px}
+.summary{padding-top:12px;padding-bottom:12px;gap:10px}
+.summary article{padding:12px 16px!important;border-radius:8px;box-shadow:none}
+.workspace{gap:14px;margin-top:10px}.map-panel,.editor{border-radius:10px;box-shadow:none}
+.map-panel{padding:14px}.tools{gap:10px;padding-bottom:10px}
+.tools>nav{padding:2px;border-radius:7px}.tools>nav button{min-height:36px;padding:7px 14px;border-radius:5px;font-size:14px}
+.goods-entry-tools{margin-bottom:10px;gap:8px}.goods-entry-tools button{min-height:36px;padding:6px 14px;border-radius:6px;font-size:14px}
+.tools .configure{min-height:36px;padding:6px 10px}.tools .search{min-height:36px;border-radius:6px}.tools .search input{height:34px}
+.editor{padding:14px}.editor-head{padding-bottom:8px}.editor-head h2{font-size:24px}
+.editor label,.editor .form-grid label{font-size:13px;gap:4px}
+.editor .form-grid{gap:9px;margin-top:10px}
+.editor input:not([type=radio]):not([type=checkbox]),.editor select,.editor textarea{min-height:36px;padding:7px 9px;border-radius:5px}
+.editor button,.stock-entry-form button{min-height:36px;font-size:13px}
+.editor .stock-tab-select{padding:8px 10px}.editor .stock-tab-meta{line-height:1.4}
+.storage-duration{padding:8px 12px!important;border-radius:7px!important;margin:10px 0!important}
+.storage-duration strong{font-size:22px!important}
+.stock-entry-form .stock-layer-field{margin:8px 0}
+.stock-entry-form .product-annotations{background:transparent;border:0;border-bottom:1px solid #e4e8df;border-radius:0;padding:5px 0 9px}
+.stock-entry-form .actions{margin-top:12px;gap:7px}.stock-entry-form .actions button{padding:8px}
+.logs-page,.backup-page,.health-page{padding:20px 20px}
+.logs-page>header,.backup-page>header,.health-page>header{padding:16px 20px;border-radius:8px;border-bottom-width:2px}
+.logs-page header h1,.backup-page header h1,.health-page header h1{font-size:25px;margin:3px 0}
+.logs-page header a,.backup-page header a,.health-page header a{min-height:36px;padding:7px 12px;border-radius:6px}
+.logs-page button,.backup-page button,.health-page button{min-height:36px}
+.logs-page input,.backup-page input{min-height:36px}
+.log-row{padding:9px 12px;gap:10px;line-height:1.45}
+.log-row time,.log-row b,.log-row strong{font-size:12px}.log-row p{font-size:13px}
+.log-empty{padding:24px}.record-pagination{gap:10px;margin-top:12px}
+.backup-summary,.backup-list,.restore-box,.paper-import-box{padding:12px;border-radius:7px}
+.backup-grid{gap:10px}.backup-grid h2{margin-bottom:9px}.backup-list article{padding:9px 0}
+.health-grid{gap:10px}.health-grid article{padding:14px;border-radius:8px}.health-grid article>strong{font-size:26px}
+.logs-page .record-filters,.backup-page .record-filters{max-width:1200px;margin:10px auto;min-width:0}
+.record-filters label{min-width:0}.record-filters input,.record-filters select{box-sizing:border-box;min-width:0;max-width:100%}
+@media(min-width:1100px){.editor .form-grid>label.wide:has(>input):not(:nth-child(3)){grid-column:auto}.editor .form-grid>label.wide:nth-child(3),.editor .form-grid>label.wide:has(>.barcode-entry){grid-column:1/-1}}
+@media(max-width:650px){
+ .topbar{padding:12px 16px}.topbar h1{font-size:22px}.topbar .account-box{margin-top:10px}
+ .summary{padding:12px;gap:8px}.summary article{padding:10px 12px!important}
+ .map-panel{padding:12px!important}.tools>nav button{min-height:44px;padding:8px 4px!important}
+ .goods-entry-tools button{min-height:42px;padding:8px 10px}.tools .configure{min-height:40px}.tools .search input{height:40px}
+ .editor{padding:14px!important}.editor input:not([type=radio]):not([type=checkbox]),.editor select,.editor textarea{font-size:16px;min-height:40px;padding:8px 9px}
+ .editor button,.stock-entry-form button{min-height:40px}.editor .form-grid{gap:8px}
+ .logs-page,.backup-page,.health-page{padding:14px 12px}.logs-page>header,.backup-page>header,.health-page>header{padding:14px;gap:10px}
+ .logs-page header h1,.backup-page header h1,.health-page header h1{font-size:23px}
+ .logs-page button,.backup-page button,.health-page button{min-height:40px}.logs-page input,.backup-page input,.backup-page textarea{font-size:16px;min-height:40px}
+ .log-row{padding:10px 12px;gap:5px}.log-row p{background:transparent;padding:2px 0;border-radius:0}
+ .logs-page .audit-restore-table>.log-head{display:none}
+ .logs-page .audit-restore-table>.log-row:not(.log-head){display:grid;grid-template-columns:1fr 1fr;align-items:start;text-align:left}
+ .logs-page .audit-restore-table>.log-row>time,.logs-page .audit-restore-table>.log-row>p,.logs-page .audit-restore-table>.log-row>div{grid-column:1/-1}
+}
+.tools nav .workorders-entry{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:6px;color:#526b60;text-decoration:none;font:inherit;font-weight:700;min-height:36px;box-sizing:border-box}.tools nav .workorders-entry:hover{background:#e7efe9;color:#163d30}.tools nav .workorders-entry:focus-visible{outline:2px solid #c88715;outline-offset:2px}
+
+/* Receiving actions share the right toolbar column, above map management. */
+.tools{flex-wrap:wrap}.tools>nav{flex:1 1 390px}.tools>.search{flex:1 1 210px}.warehouse-action-group{display:flex;gap:8px;align-items:flex-start;margin-left:auto}.warehouse-action-stack{display:flex;flex-direction:column;gap:6px}.warehouse-action-group>.message-inbound-button{align-self:flex-start}.warehouse-action-stack .goods-entry-tools{margin:0;flex-wrap:nowrap;gap:6px}.warehouse-map-actions{display:flex;gap:6px;justify-content:flex-end}.warehouse-action-stack .goods-entry-tools button{padding:6px 12px;min-height:36px}.warehouse-action-group .configure{min-height:36px}@media(max-width:850px){.tools>nav{flex-basis:100%}.tools>.search{min-width:160px}.warehouse-action-group{margin-left:0}}@media(max-width:650px){.tools>nav{flex:none}.tools>.search{width:100%;flex:none;order:0}.warehouse-action-group{width:100%;flex-wrap:wrap}.warehouse-action-stack{flex:1;min-width:0}.warehouse-action-stack .goods-entry-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.warehouse-map-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.warehouse-action-group .configure,.warehouse-action-stack .goods-entry-tools button{min-height:40px;padding:8px;font-size:12px}.warehouse-action-group>.message-inbound-button{max-width:110px;white-space:normal}}
+
+/* Match field size to its content without turning read-only values into inputs. */
+.editor .stock-layer-field input,.editor .capacity-card input{width:8ch;min-width:76px;max-width:100%}
+.editor .stock-layer-field label,.editor .capacity-card label{align-items:flex-start}
+.editor .read-only-capacity input:disabled{border:0;border-radius:0;background:transparent;box-shadow:none;padding:2px 0;min-height:0;color:inherit;cursor:default}
+.restore-box>label>input{width:min(100%,20ch)}
+.stock-move-modal .move-fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+.stock-move-modal .move-fields label,.stock-move-modal .move-layer-fields label{align-items:flex-start;min-width:0}
+.stock-move-modal .move-fields input{width:14ch;max-width:100%}
+.stock-move-modal .move-layer-fields input{width:8ch;max-width:100%}
+.stock-move-modal .move-target-select input{width:min(100%,30ch)}
+.logs-page .log-row>*{min-width:0;overflow-wrap:anywhere}
+.logs-page .log-row p{white-space:pre-wrap}
+.backup-summary>div,.backup-list article>div,.health-status>div{min-width:0;overflow-wrap:anywhere}
+.backup-summary button,.backup-list article>a,.health-status button{flex-shrink:0}
+.health-grid article{min-width:0;overflow-wrap:anywhere}
+.health-grid article>strong.health-date{font-size:18px;line-height:1.4}
+.stock-move-modal .move-source-card b,.stock-move-modal .move-source-card small{overflow-wrap:anywhere}
+@media(max-width:650px){
+ .stock-move-modal .move-fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .stock-move-modal .move-layer-fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .stock-move-modal .move-layer-fields.single{grid-template-columns:1fr}
+ .stock-move-modal .move-layer-fields small{grid-column:1/-1}
+ .stock-move-modal .move-fields input{width:100%}
+ .health-status{gap:10px;flex-wrap:wrap}
+ .health-grid article>strong.health-date{font-size:17px}
+ .backup-summary{flex-wrap:wrap;gap:10px}
+ .backup-summary button{margin-left:auto}
+}
+.editor .note textarea{height:96px;min-height:96px;max-height:280px;resize:vertical;overflow-y:auto;line-height:1.6}

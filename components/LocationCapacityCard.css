@@ -1,0 +1,25 @@
+.location-capacity-card{min-width:0;max-width:100%;box-sizing:border-box;padding:12px!important;font-size:13px}
+.location-capacity-card header{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}
+.location-capacity-card header b{min-width:0;overflow-wrap:anywhere;font-size:14px}
+.location-capacity-card button{padding:5px 10px!important;font-size:12px!important;line-height:1.4;min-height:30px;width:auto;max-width:100%}
+.location-capacity-card header button{flex:0 0 auto;white-space:nowrap}
+.location-capacity-card .location-capacity-fields{margin-top:10px;max-width:160px}
+.location-capacity-card label{display:flex;align-items:center;gap:8px;min-width:0;font-size:13px;line-height:1.5}
+.location-capacity-card input{width:72px!important;min-width:0;max-width:100%;box-sizing:border-box;padding:5px 7px!important;font-size:13px!important;line-height:1.4;height:30px}
+.location-capacity-card small{display:block;margin-top:8px;font-size:12px;line-height:1.5;color:#657080}
+.location-capacity-card .location-capacity-error{color:#9c3d1a}
+.location-capacity-card .location-capacity-refresh{margin-top:8px}
+.location-capacity-card .layer-volume-heading{display:block;margin-top:12px;font-size:13px}
+.location-capacity-card .layer-volume-heading span{font-weight:400}
+.location-capacity-card .layer-volume-rows{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:6px;margin-top:8px;max-height:360px;overflow:auto;min-width:0}
+.location-capacity-card .layer-volume-row{display:flex;flex-wrap:wrap;align-items:center;gap:2px 6px;min-width:0;padding:6px 8px;box-sizing:border-box;border:1px solid #e2e5eb;border-radius:6px;background:#fafbfc}
+.location-capacity-card .layer-volume-row label{flex:1 1 auto;justify-content:space-between;white-space:nowrap}
+.location-capacity-card .layer-volume-row small{margin:0;color:#a36218;font-size:11px}
+.location-capacity-card .layer-volume-add{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-top:10px}
+@media(max-width:600px){
+ .location-capacity-card .layer-volume-rows{grid-template-columns:repeat(2,minmax(0,1fr));max-height:360px}
+ .location-capacity-card .layer-volume-row{padding:5px 6px}
+ .location-capacity-card .layer-volume-row label{gap:4px;font-size:12px}
+ .location-capacity-card .layer-volume-row input{width:60px!important}
+}
+@media(max-width:350px){.location-capacity-card .layer-volume-rows{grid-template-columns:minmax(0,1fr)}}

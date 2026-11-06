@@ -1,0 +1,28 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import {warehouseApiHarness} from './helpers/warehouse-api-harness.mjs';
+const row=(h,id)=>h.sqlite.prepare('SELECT * FROM stocks WHERE id=?').get(id);
+const state=h=>JSON.parse(h.sqlite.prepare('SELECT value FROM goods_flow_state WHERE id=1').get().value);
+const fees=h=>h.sqlite.prepare('SELECT * FROM storage_fee_settlements ORDER BY id').all();
+const refs=p=>p.members.map(r=>({id:r.id,version:r.version}));
+async function setup(){const h=warehouseApiHarness();h.seedUser(1,null,'admin','boss');h.setting('warehouse_zones',[{id:'NEW_A',title:'A区',codes:['A1','A2']}]);const id=h.stock('A1'),other=h.stock('A2');h.sqlite.prepare("UPDATE stocks SET product='真空封口机 黑',customer_name='删除测试客户',sku='DISCARD-1',inbound_source='return',billing_mode='item',item_volume_m3=.001,total_quantity=1,total_boxes=3,pallet_count=0,pallet_label='0',inbound_date='2026-05-15'").run();h.sqlite.prepare("UPDATE stocks SET total_quantity=0,total_boxes=7,inbound_date='2026-04-17' WHERE id=?").run(id);const c=(await h.call('goods/correction?stockId='+id)).data;const corrected=await h.call('goods/correction','POST',{requestId:randomUUID(),stockId:id,expectedRevision:c.revision,members:c.members,newQuantity:1,newBoxes:7,effectiveDate:'2026-04-17',confirmed:true,pricingSource:'product',lotId:''});assert.equal(corrected.status,200,JSON.stringify(corrected.data));return{h,id,other};}
+const discard=(h,id,patch={},token)=>h.call('stocks/discard','DELETE',{id,expectedVersion:row(h,id).version,...patch},token);
+test('已建独立批次的1件7箱可直接删除，不产生真实出库费用；原批次历史/其他库位/产品记忆保留，随后恢复',async()=>{const{h,id,other}=await setup();try{
+ const before={...row(h,id)},otherBefore={...row(h,other)},stateBefore=structuredClone(state(h)),feesBefore=fees(h);const r=await discard(h,id);assert.equal(r.status,200,JSON.stringify(r.data));assert.equal(r.data.deletedId,id);assert.equal(row(h,id).total_quantity,0);assert.equal(row(h,id).total_boxes,0);assert.deepEqual({...row(h,other)},otherBefore);assert.deepEqual(fees(h),feesBefore);
+ const c=(await h.call('goods')).data.choices[0];assert.equal(c.quantity,1);assert.equal(c.boxes,3);assert.equal(c.review,false);assert.equal(c.product,'真空封口机 黑');
+ const log=h.sqlite.prepare("SELECT * FROM audit_logs WHERE action='删除'").get();assert.ok(log);assert.match(log.summary,/不计入出入库/);assert.equal(h.sqlite.prepare("SELECT COUNT(*) n FROM audit_logs WHERE action='出库'").get().n,0);
+ const history=await h.call('pricing/report?asOf=2026-09-01');assert.equal(history.status,200,JSON.stringify(history.data));assert.equal(history.data.rows.reduce((n,x)=>n+x.quantity,0),2);
+ const restored=await h.call('movements','POST',{id:log.id});assert.equal(restored.status,200,JSON.stringify(restored.data));for(const field of ['total_quantity','total_boxes','inbound_date','product','sku','customer_name'])assert.equal(row(h,id)[field],before[field]);assert.deepEqual(state(h),stateBefore);assert.deepEqual(fees(h),feesBefore);
+ }finally{h.sqlite.close();}});
+test('删除不要求补未知体积，也不删已确认历史账单；请求重试不会重复删除或审计',async()=>{const{h,id}=await setup();try{
+ h.sqlite.prepare('UPDATE stocks SET item_volume_m3=0 WHERE id=?').run(id);const stored=state(h);for(const lot of stored.categories[0].lots)if(lot.stockId===id)lot.snapshot.itemVolumeM3=0;h.sqlite.prepare('UPDATE goods_flow_state SET value=? WHERE id=1').run(JSON.stringify(stored));
+ h.sqlite.prepare("INSERT INTO storage_fee_settlements(stock_id,operation_id,location_code,product,customer_name,inbound_date,outbound_at,quantity,item_volume_m3,rate_usd_m3_day,free_days,storage_days,billable_days,total_volume_m3,fee_usd,settlement_status,created_at) VALUES (?,'old-confirmed','A1','真空封口机 黑','删除测试客户','2026-04-17','2026-05-01T00:00:00Z',2,.001,.5,0,14,14,.002,.01,'settled','2026-05-01T00:00:00Z')").run(id);const prior=fees(h),body={id,expectedVersion:row(h,id).version,requestId:randomUUID()};const first=await h.call('stocks/discard','DELETE',body);assert.equal(first.status,200,JSON.stringify(first.data));assert.deepEqual((await h.call('stocks/discard','DELETE',body)).data,first.data);assert.equal(h.sqlite.prepare("SELECT COUNT(*) n FROM audit_logs WHERE action='删除'").get().n,1);assert.deepEqual(fees(h),prior);
+ }finally{h.sqlite.close();}});
+test('管理员可删除和恢复；员工旧库存授权不能越权操作',async()=>{const{h,id}=await setup();try{
+ h.seedUser(2,['stock.edit','stock.restore'],'employee','editor');h.seedUser(3,['stock.delete','stock.restore'],'admin','deleter');assert.equal((await discard(h,id,{},'test-token-2')).status,403);const r=await discard(h,id,{},'test-token-3');assert.equal(r.status,200,JSON.stringify(r.data));const log=h.sqlite.prepare("SELECT id FROM audit_logs WHERE action='删除'").get();assert.equal((await h.call('movements','POST',{id:log.id},'test-token-2')).status,403);assert.equal((await h.call('movements','POST',{id:log.id},'test-token-3')).status,200);
+ }finally{h.sqlite.close();}});
+test('过期版本及并发库存变化整次拒绝，后续修改后不允许覆盖恢复',async()=>{const{h,id}=await setup();try{
+ const before={...row(h,id)},beforeState=structuredClone(state(h));const stale=await discard(h,id,{expectedVersion:before.version-1});assert.equal(stale.status,409);assert.deepEqual({...row(h,id)},before);assert.deepEqual(state(h),beforeState);
+ const r=await discard(h,id);assert.equal(r.status,200,JSON.stringify(r.data));const log=h.sqlite.prepare("SELECT id FROM audit_logs WHERE action='删除'").get();h.sqlite.prepare('UPDATE stocks SET note=?,version=version+1 WHERE id=?').run('后续记录',id);assert.equal((await h.call('movements','POST',{id:log.id})).status,409);assert.equal(row(h,id).note,'后续记录');
+ }finally{h.sqlite.close();}});

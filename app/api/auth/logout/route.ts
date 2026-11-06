@@ -1,0 +1,1 @@
+import { cookieValue } from "../../../../lib/auth"; export async function POST(req:Request){cookieValue(req,"wms_session");return Response.json({ok:true},{headers:{"Set-Cookie":"wms_session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0"}})}

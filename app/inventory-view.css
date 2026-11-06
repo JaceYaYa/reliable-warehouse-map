@@ -1,0 +1,71 @@
+.workspace.inventory-view-active{grid-template-columns:minmax(0,1fr)}.inventory-view-active>.editor,.inventory-view-active>.stock-save-feedback{display:none!important}.inventory-view-active>.map-panel{min-width:0}.inventory-view-active .tools nav{flex-wrap:wrap}.warehouse-test-banner{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:11px 20px;background:#fff0bc;color:#594514;border-bottom:1px solid #dfca84;font-size:14px;line-height:1.5}.warehouse-test-banner strong{font-weight:750}.warehouse-test-banner a{color:inherit;text-decoration:underline}.test-page{min-height:100vh}@media(max-width:650px){.warehouse-test-banner{padding:10px 16px;justify-content:flex-start}.tools nav{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%}.tools nav button{min-width:0!important;padding:12px 8px!important}}
+.inventory-view-active>.editor.list-editor-drawer.open{display:block!important}
+.goods-entry-tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.goods-entry-tools button{min-height:42px;padding:9px 18px;border:1px solid #c8d8cf;border-radius:9px;background:#e5f2eb;color:#184839;font-weight:700;font-size:15px;cursor:pointer}
+.goods-entry-tools button:last-child{background:#fff2dc;color:#79521e;border-color:#e8d4ae}
+.goods-entry-tools button:disabled{opacity:.5;cursor:default}
+
+/* Data hooks scope compact inventory rows without changing grouping or quantities. */
+[aria-label="库存界面"]{padding-top:14px;font-size:14px}
+[aria-label="库存界面"] [class*="heading"]{margin-bottom:12px;gap:12px}
+[aria-label="库存界面"] [class*="heading"] h2{font-size:23px;margin-bottom:3px}
+[aria-label="库存界面"] [class*="modes"]{padding:2px;border-radius:6px}
+[aria-label="库存界面"] [class*="modes"] button{padding:7px 12px;min-height:36px;border-radius:5px}
+[aria-label="库存界面"] [class*="reviewTabs"]{gap:6px;margin-bottom:10px}
+[aria-label="库存界面"] [class*="reviewTabs"] button{padding:7px 11px;min-height:36px;border-radius:5px}
+[aria-label="库存界面"] [class*="filters"]{padding:10px 0;gap:12px;background:transparent;border:0;border-top:1px solid #e2e8e3;border-bottom:1px solid #e2e8e3;border-radius:0}
+[aria-label="库存界面"] [class*="filters"] label,[aria-label="库存界面"] [class*="customerFilter"]{gap:4px;font-size:13px}
+[aria-label="库存界面"] [class*="filters"] input:not([type=checkbox]),[aria-label="库存界面"] [class*="filters"] select,[aria-label="库存界面"] [class*="customerPicker"]>summary{min-height:36px;padding:7px 10px;border-radius:5px;font-size:14px}
+[aria-label="库存界面"] [class*="batchToolbar"]{padding:8px 0;margin-top:8px;gap:10px;border:0;border-bottom:1px solid #e2e8e3;border-radius:0;background:transparent}
+[aria-label="库存界面"] [class*="batchToolbar"] button{min-height:34px;padding:6px 10px;border-radius:5px}
+[aria-label="库存界面"] [aria-label="库存汇总"]{margin-top:10px;gap:0;background:#f6f8f5;border-radius:5px;border:1px solid #e2e8e3}
+[aria-label="库存界面"] [aria-label="库存汇总"]>div{padding:9px 14px;border:0;border-right:1px solid #e2e8e3;border-radius:0;background:transparent;display:flex;align-items:center;justify-content:space-between;gap:10px}
+[aria-label="库存界面"] [aria-label="库存汇总"]>div:last-child{border-right:0}
+[aria-label="库存界面"] [aria-label="库存汇总"] strong{font-size:22px}
+[aria-label="库存界面"] [class*="explanation"]{margin:9px 0;font-size:12px;line-height:1.5}
+[aria-label="库存界面"] [class*="rows"]{gap:0;border-top:1px solid #d9e3dc}
+[aria-label="库存界面"] [data-inventory-group]{border:0;border-bottom:1px solid #d9e3dc;border-radius:0}
+[aria-label="库存界面"] [data-inventory-group]>summary{padding:12px 10px;gap:12px}
+[aria-label="库存界面"] [data-inventory-group]>summary [class*="identity"],[aria-label="库存界面"] [data-inventory-group]>summary [class*="amount"],[aria-label="库存界面"] [data-inventory-group]>summary [class*="locations"]{gap:3px}
+[aria-label="库存界面"] [data-inventory-group]>summary [class*="amount"]>strong{font-size:21px}
+[aria-label="库存界面"] [data-inventory-group]>summary [class*="locations"]>small{font-size:12px}
+[aria-label="库存界面"] [data-inventory-group]>[class*="members"]{padding:0 10px 10px;gap:0;background:#fafcf9;grid-template-columns:minmax(0,1fr)}
+[data-inventory-stock-id]{margin-top:0!important;padding:10px 12px!important;border:0!important;border-bottom:1px solid #e0e7df!important;border-radius:0!important;background:transparent!important}
+[data-inventory-stock-id]:last-child{border-bottom:0!important}
+[data-inventory-stock-id] [class*="memberHead"]{font-size:14px;gap:6px}
+[data-inventory-stock-id] [class*="recordProduct"]{margin:6px 0 4px;font-size:14px}
+[data-inventory-stock-id] [class*="recordCustomer"]{margin-bottom:6px;font-size:13px}
+[data-inventory-stock-id] dl{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px 12px!important}
+[data-inventory-stock-id] dl>div{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;min-width:0}
+[data-inventory-stock-id] dt{margin:0!important;font-size:12px!important;white-space:nowrap}
+[data-inventory-stock-id] dd{font-size:13px!important;min-width:0}
+[data-inventory-stock-id] [class*="recordActions"]{margin-top:7px;gap:8px}
+[data-inventory-stock-id] [class*="recordActions"] button{min-height:32px;padding:5px 9px;border-radius:5px}
+[aria-label="库存界面"] [class*="candidate"],[aria-label="库存界面"] [class*="selectionPreview"],[aria-label="库存界面"] [class*="historyCard"]{padding:12px;border-width:1px;border-radius:7px;background:#fafcf8;margin:10px 0}
+[aria-label="库存界面"] [class*="compareCard"]{padding:10px 12px;border-radius:5px}
+[aria-label="库存界面"] [class*="compareCard"] dl{gap:7px;margin:10px 0}
+[aria-label="库存界面"] [class*="selectionBar"]{padding:9px 12px;border-radius:6px;box-shadow:none}
+@media(max-width:900px){[data-inventory-stock-id] dl{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:650px){
+ [aria-label="库存界面"]{padding-top:12px}
+ [aria-label="库存界面"] [class*="heading"]{gap:8px;margin-bottom:10px}
+ [aria-label="库存界面"] [class*="modes"] button,[aria-label="库存界面"] [class*="reviewTabs"] button{min-height:40px;padding:8px 10px}
+ [aria-label="库存界面"] [class*="filters"]{gap:9px;padding:9px 0}
+ [aria-label="库存界面"] [class*="filters"] input:not([type=checkbox]),[aria-label="库存界面"] [class*="filters"] select,[aria-label="库存界面"] [class*="customerPicker"]>summary{font-size:16px;min-height:40px}
+ [aria-label="库存界面"] [class*="batchToolbar"]{gap:8px}.inventory-view-active [aria-label="库存界面"] [class*="batchToolbar"] button{min-height:40px}
+ [aria-label="库存界面"] [aria-label="库存汇总"]>div{padding:9px;border-bottom:1px solid #e2e8e3;flex-wrap:wrap;gap:3px}
+ [aria-label="库存界面"] [aria-label="库存汇总"]>div:nth-child(2n){border-right:0}[aria-label="库存界面"] [aria-label="库存汇总"]>div:nth-child(n+3){border-bottom:0}
+ [aria-label="库存界面"] [aria-label="库存汇总"] span{font-size:12px}[aria-label="库存界面"] [aria-label="库存汇总"] strong{font-size:20px}
+ [aria-label="库存界面"] [data-inventory-group]>summary{padding:10px 4px;gap:8px}
+ [aria-label="库存界面"] [data-inventory-group]>[class*="members"]{padding:0 4px 6px}
+ [data-inventory-stock-id]{padding:10px 8px!important}
+ [data-inventory-stock-id] dl{gap:6px 10px!important}
+ [data-inventory-stock-id] dl>div{gap:2px 7px;display:block}
+ [data-inventory-stock-id] [class*="recordActions"] button{min-height:40px;padding:8px 10px}
+ [data-inventory-stock-id] input,[data-inventory-stock-id] select,[data-inventory-stock-id] textarea{font-size:16px;min-height:40px}
+ [aria-label="库存界面"] [class*="candidateActions"] button{min-height:40px}
+}
+
+.inventory-section-switch{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.inventory-section-switch .active{background:#173f32;color:white}.sidebar-cartons{margin-top:16px;border-top:1px solid #d8e4db;padding-top:12px}.sidebar-cartons p{font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+
+.inventory-section-switch button{border:1px solid #b5cdc0;border-radius:7px;background:#fff;color:#224f3d;font-size:14px;font-weight:600;padding:9px 14px;min-height:38px}.inventory-section-switch button.active{background:#173f32;color:#fff;border-color:#173f32}

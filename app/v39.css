@@ -1,0 +1,7 @@
+.location-switcher{display:flex;flex-direction:column;gap:7px;min-width:205px}
+.editor-head .current-location{display:flex;align-items:baseline;gap:7px;color:#6e7872;font-size:10px}
+.current-location b{color:#17372a;font-size:22px}
+.location-jump{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;align-items:center}
+.editor-head .location-switch{width:100%;margin:0;border:1px solid #d8ddd7;border-radius:6px;padding:8px 10px;background:#fbfbf9;font-size:15px;font-weight:600}
+.location-jump button{height:35px;border:0;border-radius:6px;padding:0 13px;background:#17372a;color:#fff;font-weight:700;cursor:pointer}
+@media(max-width:650px){.location-switcher{min-width:190px}.editor-head .location-switch{font-size:15px}}

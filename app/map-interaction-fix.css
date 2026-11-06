@@ -1,0 +1,151 @@
+.site-version {
+  display: inline-block;
+  margin-left: 7px;
+  padding: 2px 6px;
+  border: 1px solid #dff08780;
+  border-radius: 4px;
+  color: #dff087;
+  font-size: 9px;
+  letter-spacing: 1px;
+  vertical-align: middle;
+}
+
+/* Keep search results above the map controls and avoid a floating toolbar overlap. */
+.search-results {
+  z-index: 100 !important;
+}
+
+.search-results button {
+  grid-template-columns: 54px 36px minmax(0, 1fr);
+  align-items: center;
+}
+.search-results button > small{grid-column:3;min-width:0;overflow-wrap:anywhere}
+.search-results button > b{min-width:0;overflow-wrap:anywhere}
+.search-result-product{grid-column:3;line-height:1.5}
+.search-results{max-height:min(65vh,600px);overflow-y:auto;width:min(480px,calc(100vw - 40px))}
+
+
+.search-result-layer {
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: #e3efe8;
+  color: #1d6a4e;
+  font-size: 10px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.search-result-product {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.search-result-product > span,
+.search-result-evidence {
+  display: block;
+}
+
+.search-result-inbound,
+.search-supplement-inbound {
+  display: block;
+  margin-top: 3px;
+  color: #738078 !important;
+  font-size: 9px;
+  font-style: normal;
+  line-height: 1.35;
+}
+
+.search-result-evidence {
+  margin-top: 3px;
+  color: #68766f !important;
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.search-result-evidence > span {
+  display: inline;
+}
+
+.search-match {
+  padding: 0 .04em;
+  border-radius: 2px;
+  background: #2d63c8;
+  box-shadow: 0 0 0 1px #2d63c8;
+  color: #fff;
+  font: inherit;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.search-approximate{display:inline-block;margin:3px 6px 3px 0;padding:2px 6px;border-radius:5px;background:#fff1d6;color:#805919;font-size:12px;line-height:1.5;font-style:normal}
+
+.editor-stock-results button .search-result-details {
+  display: -webkit-box;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  text-overflow: clip;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+@media (forced-colors: active) {
+  .search-match {
+    background: Highlight;
+    box-shadow: none;
+    color: HighlightText;
+  }
+}
+
+.map-view-controls {
+  position: relative !important;
+  top: auto !important;
+  z-index: 2 !important;
+}
+
+.warehouse-canvas::before {
+  content: "统一仓库平面图 · 按住拖动 / 按钮缩放" !important;
+}
+
+/* Desktop owns pointer gestures inside the map; mobile defaults to page scrolling. */
+@media (min-width: 651px) {
+  .warehouse-canvas {
+    touch-action: none !important;
+    cursor: grab !important;
+  }
+
+  .warehouse-canvas:active {
+    cursor: grabbing !important;
+  }
+
+  .warehouse-canvas.mouse-panning,
+  .warehouse-canvas.mouse-panning * {
+    cursor: grabbing !important;
+    user-select: none !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .warehouse-canvas {
+    touch-action: auto !important;
+    cursor: default !important;
+  }
+
+  .warehouse-canvas .map-location,
+  .warehouse-canvas .map-feature {
+    touch-action: auto !important;
+  }
+
+  .warehouse-canvas.editing,
+  .warehouse-canvas.editing .map-location,
+  .warehouse-canvas.editing .map-feature {
+    touch-action: none !important;
+  }
+
+  .warehouse-canvas.editing {
+    cursor: grab !important;
+  }
+
+  .map-view-controls .nav-toggle {
+    display: none !important;
+  }
+}

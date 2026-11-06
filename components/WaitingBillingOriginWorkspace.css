@@ -1,0 +1,22 @@
+.wm-origin-backdrop{overscroll-behavior:contain}
+.wm-origin-dialog{width:min(780px,100%);min-width:0;overflow:auto;max-height:92dvh}
+.wm-origin-dialog>header{align-items:flex-start}
+.wm-origin-dialog>header>div{min-width:0}
+.wm-origin-dialog>header button{flex-shrink:0;min-width:60px;white-space:nowrap}
+.wm-origin-dialog header p{font-size:14px;line-height:1.6;margin:8px 0 0;max-width:600px}
+.wm-origin-dialog>label,.wm-origin-dialog>fieldset,.wm-origin-dialog>p,.wm-origin-dialog>div{margin:14px 20px}
+.wm-origin-dialog label{display:block;min-width:0;font-size:14px}
+.wm-origin-dialog input[type=text],.wm-origin-dialog input[type=date]{display:block;width:100%;min-width:0;box-sizing:border-box;border:1px solid #b8cec2;border-radius:8px;padding:9px 11px;margin-top:5px;font:inherit;min-height:42px;background:white}
+.wm-origin-dialog input[type=radio]{width:17px;min-width:17px;height:17px;min-height:17px;max-height:17px;padding:0;vertical-align:middle;margin:0 5px 0 0;accent-color:#147454}
+.wm-origin-dialog fieldset{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1.4fr);gap:12px;border:1px solid #c8dacf;border-radius:10px;padding:12px}
+.wm-origin-dialog fieldset p{grid-column:1/-1;margin:0;font-size:13px;line-height:1.6;color:#536b60}
+.wm-origin-dialog fieldset legend{padding:0 5px;font-weight:600}
+.wm-origin-dialog small{line-height:1.7;color:#587063}
+.wm-origin-dialog [role=alert]{color:#a12f26;background:#fff1ed;padding:10px;border-radius:8px}
+.wm-origin-dialog [role=status]{color:#206240;background:#eef7f0;padding:10px;border-radius:8px}
+.wm-origin-dialog [role=region]{background:#f3f7f4;border:1px solid #c9dccf;border-radius:10px;padding:12px}
+.wm-origin-dialog [role=region] p{font-size:14px;line-height:1.6;margin:6px 0}
+.wm-origin-dialog button{min-height:40px;border:1px solid #b9cfc3;border-radius:8px;padding:8px 13px;background:white;font:inherit;cursor:pointer}
+.wm-origin-dialog button:disabled{opacity:.5;cursor:default}
+.wm-origin-dialog footer button:last-child{background:#14694c;color:white;border-color:#14694c}
+@media(max-width:600px){.wm-origin-dialog{max-height:96dvh}.wm-origin-dialog>label,.wm-origin-dialog>fieldset,.wm-origin-dialog>p,.wm-origin-dialog>div{margin:12px}.wm-origin-dialog fieldset{grid-template-columns:1fr}.wm-origin-dialog header h3{font-size:18px}.wm-origin-dialog header p{font-size:13px}.wm-origin-dialog footer{gap:8px!important}.wm-origin-dialog footer button{white-space:normal;min-width:0}}

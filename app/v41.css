@@ -1,0 +1,18 @@
+.map-mode.hidden{display:none}
+.location-list-view{margin-top:18px;border:1px solid #dce2dd;border-radius:10px;background:#f7f8f5;overflow:hidden}
+.location-list-view>header{display:flex;justify-content:space-between;align-items:end;padding:20px 22px;background:#17372a;color:#fff}
+.location-list-view>header p{margin:0 0 5px;color:#a9bbb2;font-size:9px;letter-spacing:2px}
+.location-list-view>header h2{margin:0;font-size:21px}
+.location-list-view>header>span{color:#b9c8c1;font-size:10px}
+.location-folders{padding:14px;display:flex;flex-direction:column;gap:9px}
+.location-folder{border:1px solid #dbe1dc;border-radius:8px;background:#fff;overflow:hidden}
+.folder-head{width:100%;min-height:54px;border:0;background:#fff;padding:0 16px;display:grid;grid-template-columns:20px 1fr auto;gap:9px;align-items:center;text-align:left;cursor:pointer;color:#17241e}
+.folder-head:hover,.location-folder.open>.folder-head{background:#edf3ee}
+.folder-head i{font-style:normal;color:#397156;font-size:16px}
+.folder-head b{font-size:14px}
+.folder-head span{color:#748078;font-size:10px}
+.folder-locations{padding:12px;border-top:1px solid #e5e9e5;display:grid;grid-template-columns:repeat(auto-fill,minmax(126px,1fr));gap:8px;background:#fafbf8}
+.list-location{min-height:78px;border:1px solid #d9dfda;border-radius:7px;background:#fff;padding:10px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;cursor:pointer}
+.list-location b{font-size:15px}.list-location span{margin-top:7px;color:#53625a;font-size:10px}.list-location small{margin-top:auto;color:#6f7c75;font-size:9px}
+.list-location.unlimited{background:#e8f2ff;border-color:#73aaf0}.list-location.used{background:#e7f2eb;border-color:#8fbaa3}.list-location.full{background:#fff0d5;border-color:#d9ad5c}.list-location.selected{outline:3px solid #17372a;outline-offset:1px}
+@media(max-width:650px){.location-list-view>header{padding:16px}.location-list-view>header>span{display:none}.location-folders{padding:8px}.folder-locations{grid-template-columns:repeat(2,minmax(0,1fr));padding:8px}.folder-head{padding:0 11px}.list-location{min-height:68px}}

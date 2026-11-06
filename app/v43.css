@@ -1,0 +1,26 @@
+.editor-stock-search{position:relative;margin-top:10px}
+.editor-stock-search>label{display:block;margin-bottom:6px;color:#64736b;font-size:12px;font-weight:800}
+.editor-stock-search-input{display:flex;align-items:center;gap:7px;border:1px solid #d5ddd8;border-radius:8px;background:#f7f8f5;padding:0 10px}
+.editor-stock-search-input:focus-within{border-color:#18704f;box-shadow:0 0 0 2px #18704f18}
+.editor-stock-search-input span{color:#718078;font-size:16px}
+.editor-stock-search-input input{width:100%;min-width:0;border:0!important;outline:0;background:transparent!important;padding:10px 0!important;font-size:12px}
+.editor-stock-results{position:absolute;z-index:40;top:calc(100% + 5px);left:0;right:0;max-height:260px;overflow-y:auto;border:1px solid #d1dad4;border-radius:9px;background:#fff;padding:5px;box-shadow:0 14px 34px #10271e2c}
+.editor-stock-results button{display:block;width:100%;border:0;border-radius:7px;background:#fff;padding:9px;text-align:left;cursor:pointer}
+.editor-stock-results button:hover,.editor-stock-results button:focus-visible{background:#edf5f0;outline:0}
+.editor-stock-results button span{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.editor-stock-results button b{overflow:hidden;color:#10271e;font-size:12px;text-overflow:ellipsis;white-space:nowrap}
+.editor-stock-results button em{flex:none;border-radius:5px;background:#17372a;color:#fff;padding:2px 6px;font-size:10px;font-style:normal;font-weight:800}
+.editor-stock-results button small{display:block;overflow:hidden;margin-top:4px;color:#718078;font-size:10px;text-overflow:ellipsis;white-space:nowrap}
+.editor-stock-results p{margin:0;padding:14px 8px;color:#718078;font-size:11px;text-align:center}
+.mobile-mini-slot{display:none}
+
+@media(max-width:650px){
+ .mobile-mini-slot{display:block;margin:0 0 12px;padding:0}
+ .mobile-mini-slot .mini-map{position:relative!important;left:auto!important;top:auto!important;width:min(100%,230px)!important;box-sizing:border-box;margin:0 auto;padding:9px;border-radius:10px;box-shadow:none;background:#f8faf7}
+ .mobile-mini-slot .mini-map header{cursor:default}
+ .mobile-mini-slot .mini-map header b{font-size:12px}
+ .mobile-mini-slot .mini-map-stage{aspect-ratio:var(--warehouse-map-aspect,6000 / 3600)}
+ .mobile-mini-slot .mini-zone.thin-zone span{display:none}
+ .mobile-mini-slot .mini-resize{display:none}
+ .editor-stock-results{position:relative;top:auto;margin-top:5px;max-height:220px;box-shadow:none}
+}

@@ -1,0 +1,9 @@
+.warehouse-canvas{height:clamp(600px,70vh,780px)!important}
+.map-world{width:var(--warehouse-map-width,6000px)!important;height:var(--warehouse-map-height,3600px)!important}
+.mini-map-stage{aspect-ratio:var(--warehouse-map-aspect,6000 / 3600)}
+.map-location{min-width:64px;min-height:58px;padding:8px}
+.map-location b{font-size:16px}
+.map-location span{font-size:10px}
+.map-editbar .undo-map{background:#f4f0df;color:#17372a;border-color:#e3d28a;font-weight:800}
+.map-editbar .undo-map:disabled{opacity:.38;cursor:not-allowed}
+@media(max-width:650px){.warehouse-canvas{height:clamp(420px,56vh,560px)!important}.map-world{width:var(--warehouse-map-width,6000px)!important;height:var(--warehouse-map-height,3600px)!important}.map-location{min-width:56px;min-height:50px}.map-location b{font-size:14px}}

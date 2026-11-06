@@ -1,0 +1,7 @@
+import {requireUser} from '../../../../lib/auth';
+import {isLayerStoragePricing} from '../../../../lib/storage-pricing-basis';
+import {GoodsFlowError} from '../../../../lib/goods-flow';
+import {manualWaitingOriginContext,previewManualWaitingOrigin,saveManualWaitingOrigin} from '../../../../lib/manual-waiting-origins-store';
+const headers={'cache-control':'private, no-store'};
+async function handle(request:Request,method:string){const a=await requireUser(request,'pricing.manage');if(a.error)return a.error;try{if(!await isLayerStoragePricing())throw new GoodsFlowError('请在托层计价下设置待出库计费依据',409);let result;if(method==='GET'){const p=new URL(request.url).searchParams;if([...p.keys()].some(k=>k!=='customer')||p.getAll('customer').length>1)throw new GoodsFlowError('客户筛选无效',400);result=await manualWaitingOriginContext(p.get('customer')??undefined);}else{const body=await request.json();if(!body||typeof body!=='object'||Array.isArray(body))throw new GoodsFlowError('提交格式无效',400);result=method==='POST'?await previewManualWaitingOrigin(body,a.user!):await saveManualWaitingOrigin(body,a.user!);}return Response.json(result,{headers});}catch(e){return Response.json({error:e instanceof GoodsFlowError?e.message:'待出库计费依据读取或保存失败，请刷新重试'},{status:e instanceof GoodsFlowError?e.status:409,headers});}}
+export async function GET(r:Request){return handle(r,'GET');}export async function POST(r:Request){return handle(r,'POST');}export async function PUT(r:Request){return handle(r,'PUT');}

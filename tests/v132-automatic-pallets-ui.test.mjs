@@ -1,0 +1,28 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync,existsSync} from 'node:fs';
+import {resolve,dirname} from 'node:path';
+import {createRequire} from 'node:module';
+import {runInNewContext} from 'node:vm';
+import ts from 'typescript';
+import React from 'react';
+const require=createRequire(import.meta.url);
+
+function harness(storage={},responses={}) {
+ const values=[],effects=[],cache=new Map(),calls=[];let cursor=0,tree;
+ const hook=(init)=>{const i=cursor++;if(!(i in values))values[i]=typeof init==='function'?init():init;return[values[i],value=>{values[i]=typeof value==='function'?value(values[i]):value}]};
+ const memo=(fn,deps)=>{const [before,set]=hook();if(!before||!deps||deps.some((v,i)=>v!==before.deps[i])){const next={value:fn(),deps};set(next);return next.value}return before.value};
+ const hooks={...React,useState:hook,useRef:init=>{const [value]=hook({current:init});return value},useId:()=>{const [id]=hook('test-id');return id},useEffect:(fn,deps)=>{const [before,set]=hook();if(!before||!deps||deps.some((v,i)=>v!==before[i])){set(deps);effects.push(fn)}},useCallback:(fn,deps)=>memo(()=>fn,deps),useMemo:memo};
+ const localStorage={getItem:key=>storage[key]??null,setItem:(key,value)=>{storage[key]=value},removeItem:key=>{delete storage[key]}};
+ const load=file=>{file=resolve(file);if(file.endsWith('.css'))return{};if(cache.has(file))return cache.get(file);const exports={};cache.set(file,exports);const code=ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true}}).outputText;const localRequire=s=>{if(s==='react')return hooks;if(s==='react-dom')return{createPortal:child=>child};if(!s.startsWith('.'))return require(s);let p=resolve(dirname(file),s);if(!existsSync(p))p+=existsSync(p+'.tsx')?'.tsx':'.ts';return load(p)};runInNewContext(code,{exports,require:localRequire,crypto:{randomUUID:()=> 'request-1'},localStorage,document:{activeElement:null,visibilityState:'visible',body:{style:{overflow:''}},addEventListener:()=>{},removeEventListener:()=>{},querySelectorAll:()=>[],getElementById:()=>null},window:{setInterval:()=>1,clearInterval:()=>{},addEventListener:()=>{},removeEventListener:()=>{},requestAnimationFrame:()=>{}},fetch:async(path,options)=>{if(options?.body)calls.push({path,method:options.method,body:JSON.parse(options.body)});const raw=typeof responses[path]==='function'?responses[path](options):responses[path]??{};const status=raw.status??200;return{ok:status>=200&&status<300,status,json:async()=>raw.data??raw}},console,AbortController,Error});return exports};
+ return {load,calls,storage,render:(Component,props)=>{cursor=0;tree=Component(props);while(effects.length)effects.shift()();return tree},nodes:()=>nodes(tree)};
+}
+function nodes(t){return !t||typeof t!=='object'?[]:[t,...React.Children.toArray(t.props?.children).flatMap(nodes),...React.Children.toArray(t.props?.allocation).flatMap(nodes)];}
+const text=node=>React.Children.toArray(node?.props?.children).filter(v=>typeof v==='string'||typeof v==='number').join('');
+const findInput=(h,label)=>h.nodes().find(n=>n.props?.['aria-label']===label);
+const button=(h,label)=>h.nodes().find(n=>n.type==='button'&&text(n)===label);
+
+const flush=async()=>{await new Promise(r=>setImmediate(r));await new Promise(r=>setImmediate(r));};
+
+test('V132 ordinary stock editor marks only an explicit pallet input as manual, including one',()=>{const h=harness(),{StockDetailsPanel}=h.load('components/StockDetailsPanel.tsx'),patches=[];const props={value:{id:1,locationCode:'A1',inboundDate:'2026-09-01',product:'产品',sku:'S',customerName:'甲',palletCount:.5,palletLabel:'1/2',layerCount:1,barcode:'',fnsku:'',inboundOrder:'',note:'',totalQuantity:10,totalBoxes:0,inboundSource:'domestic'},onChange:p=>patches.push(p),onSave:async()=>({ok:true}),onIdentitySaved:async()=>{},canEdit:true,canMove:false,onMove:()=>{}};h.render(StockDetailsPanel,props);button(h,'修改信息').props.onClick();h.render(StockDetailsPanel,props);const fields=h.nodes().find(n=>n.type?.name==='StockDetailFields');fields.props.onChange({note:'普通修改'});assert.equal(patches.at(-1).palletManual,undefined);fields.props.onChange({palletCount:'1'});assert.equal(patches.at(-1).palletManual,true);assert.equal(patches.at(-1).palletCount,1);});
+test('V132 carton ordinary editor records an explicit one as manual while note-only edits retain auto mode',async()=>{const h=harness(),{CartonDetailsPanel}=h.load('components/CartonDetailsPanel.tsx'),receipt={id:'c',version:1,inboundOrder:'IB-1',originalOrder:'IB-1',orderHistory:[],customerName:'甲',note:'',inboundDate:'2026-09-01',totalBoxes:10,placements:[{key:'p',locationCode:'A1',layerCount:1,boxes:10,marker:'',palletCount:.5,details:{product:'产品',sku:'S'}}]},props={receipt,placementKey:'p',canEdit:true,canMove:false,canConvert:false,locations:['A1'],draftKey:'manual-one',onChanged:async()=>{},onConverted:async()=>{}};h.render(CartonDetailsPanel,props);button(h,'修改信息').props.onClick();h.render(CartonDetailsPanel,props);let fields=h.nodes().find(n=>n.type?.name==='CartonStockDetailsEditor');fields.props.onChange({note:'只改备注'});h.render(CartonDetailsPanel,props);fields=h.nodes().find(n=>n.type?.name==='CartonStockDetailsEditor');assert.equal(fields.props.value.palletManual,undefined);fields.props.onChange({palletCount:'1'});h.render(CartonDetailsPanel,props);button(h,'保存修改').props.onClick();await flush();assert.equal(h.calls[0].path,'/api/cartons/details');assert.equal(h.calls[0].body.details.palletManual,true);assert.equal(h.calls[0].body.details.palletCount,'1');});

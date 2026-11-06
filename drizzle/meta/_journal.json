@@ -1,0 +1,195 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1783782194194,
+      "tag": "0000_brainy_bullseye",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1783782884534,
+      "tag": "0001_violet_blindfold",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1783821657723,
+      "tag": "0002_clean_blacklash",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1783823098273,
+      "tag": "0003_wise_cable",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1783830000000,
+      "tag": "0004_multiple_stock_items",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1783950000000,
+      "tag": "0005_long_term_performance",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1784120000000,
+      "tag": "0006_fractional_pallets",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1784220000000,
+      "tag": "0007_return_storage_pricing",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1784300000000,
+      "tag": "0008_manual_storage_settlement",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1788500000000,
+      "tag": "0009_warehouse_sync_versions",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1790006400000,
+      "tag": "0010_location_alias_guards",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1790006500000,
+      "tag": "0011_remove_new_location_prefix",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "6",
+      "when": 1790006600000,
+      "tag": "0012_custom_permissions",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "6",
+      "when": 1790006700000,
+      "tag": "0013_layer_capacity_defaults",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "6",
+      "when": 1790006800000,
+      "tag": "0014_stock_product_identifiers",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "6",
+      "when": 1790006900000,
+      "tag": "0015_stock_product_annotations",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "6",
+      "when": 1790007000000,
+      "tag": "0016_goods_flow",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "6",
+      "when": 1790007100000,
+      "tag": "0017_workorders",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "6",
+      "when": 1790007200000,
+      "tag": "0018_box_inventory_unit",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "6",
+      "when": 1790007300000,
+      "tag": "0019_box_inventory_quantity_guard",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "when": 1791000000000,
+      "tag": "0020_carton_receipts",
+      "version": "6",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "when": 1791250000000,
+      "tag": "0021_carton_movement_visibility",
+      "version": "6",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "when": 1792060000024,
+      "tag": "0024_carton_discard_visibility",
+      "version": "6",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "when": 1792972800025,
+      "tag": "0025_pallet_operational_defaults",
+      "version": "6",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "6",
+      "when": 1793089880575,
+      "tag": "0026_formal_layer_and_count_tables",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "6",
+      "when": 1793929700489,
+      "tag": "0027_messy_expediter",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "6",
+      "when": 1793933020689,
+      "tag": "0028_zippy_nomad",
+      "breakpoints": true
+    }
+  ]
+}

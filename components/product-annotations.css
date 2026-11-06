@@ -1,0 +1,12 @@
+.product-attention{color:#a46600;font-weight:700;margin-right:.35em;overflow-wrap:anywhere}
+.product-annotations{grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:7px 10px;background:#fff7df;border:1px solid #edd8a3;border-radius:8px;min-width:0;font-size:13px}
+.product-condition{border:0!important;padding:0!important;margin:0!important;min-width:0;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.annotation-legend{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.product-condition>span{font-size:13px;font-weight:700;color:#65766e}
+.product-condition>div{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.product-condition label{display:flex!important;flex-direction:row!important;align-items:center;gap:7px;font-weight:600}
+.product-condition input[type=radio]{width:19px!important;height:19px!important;min-height:0!important;margin:0!important;accent-color:#153a2b}
+.product-condition button{font-size:12px!important;padding:5px 8px!important;background:transparent!important;color:#756344!important;border:1px solid #d9c799!important}
+.product-annotations .product-prefix{display:flex;flex-direction:row;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#65766e;min-width:0;flex:1;white-space:nowrap}
+.product-annotations .product-prefix input{width:100%;box-sizing:border-box;min-width:0;min-height:34px;padding:5px 8px;font-size:14px}
+@media(max-width:450px){.product-annotations{flex-wrap:wrap;gap:7px;padding:7px 9px}.product-annotations .product-prefix{flex-basis:100%}}

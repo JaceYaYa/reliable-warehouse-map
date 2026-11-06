@@ -1,0 +1,23 @@
+"use client";
+import { useEffect, useState } from "react";
+import { hasPermission, type PermissionUser } from "../lib/permissions";
+import { userRoleLabel, isProtectedOwnerUsername } from "../lib/roles";
+type AssignableRole="employee"|"admin";
+type Account=PermissionUser & {id:number;username:string;displayName:string;role:string;active:number;permissionVersion:number};
+export function AccountManager({viewer,onClose}:{viewer:PermissionUser & {id:number};onClose:()=>void}) {
+ const [accounts,setAccounts]=useState<Account[]>([]),[error,setError]=useState(""),[busy,setBusy]=useState(false),[loading,setLoading]=useState(true);
+ const [create,setCreate]=useState({username:"",displayName:"",password:"",role:"employee" as AssignableRole});
+ const [draft,setDraft]=useState<{id:number;version:number;role:AssignableRole}|null>(null);
+ const permitted=hasPermission(viewer,'users.manage');
+ const load=async()=>{const r=await fetch('/api/users',{cache:'no-store'}),d=await r.json();if(!r.ok)throw new Error(d.error||'读取失败');setAccounts(d.users)};
+ useEffect(()=>{if(permitted)load().catch(e=>setError(e.message)).finally(()=>setLoading(false))},[permitted]);
+ const write=async(method:string,body:unknown,done:()=>void)=>{if(busy||!permitted)return;setBusy(true);setError('');try{const r=await fetch('/api/users',{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}),d=await r.json();if(!r.ok)throw new Error(d.error||'保存失败');await load();done()}catch(e){setError(e instanceof Error?e.message:'网络异常，填写内容已保留')}finally{setBusy(false)}};
+ const roleSelect=(value:AssignableRole,change:(role:AssignableRole)=>void,label:string)=><label>{label}<select aria-label={label} value={value} disabled={busy} onChange={e=>change(e.target.value as AssignableRole)}><option value="employee">员工（只读）</option><option value="admin">管理员（仓库操作）</option></select></label>;
+ const editable=(u:Account)=>!isProtectedOwnerUsername(u.username)&&u.id!==viewer.id&&permitted;
+ if(!permitted)return null;
+ return <div className="modal-backdrop account-modal-backdrop"><section className="users-modal custom-permissions" role="dialog" aria-modal="true" aria-label="账号管理"><div className="config-head"><div><p>ACCESS CONTROL</p><h2>账号管理</h2><span>员工只读；管理员可入库、出库和管理仓库；老板拥有全部权限。</span></div><button disabled={busy} onClick={onClose} aria-label="关闭账号管理">×</button></div><div className="account-scroll">
+ <section className="account-create"><h3>新增账号</h3><div className="new-user"><input autoComplete="off" placeholder="登录账号" value={create.username} disabled={busy} onChange={e=>setCreate({...create,username:e.target.value})}/><input placeholder="显示名称" value={create.displayName} disabled={busy} onChange={e=>setCreate({...create,displayName:e.target.value})}/><input type="password" autoComplete="new-password" placeholder="初始密码（至少8位）" value={create.password} disabled={busy} onChange={e=>setCreate({...create,password:e.target.value})}/></div>{roleSelect(create.role,role=>setCreate({...create,role}),'新增账号角色')}<button className="permission-save" disabled={busy} onClick={()=>write('POST',create,()=>setCreate({username:'',displayName:'',password:'',role:'employee'}))}>创建账号</button></section>
+ {error&&<p role="alert" className="permission-error">{error}<button disabled={busy} onClick={()=>load().then(()=>{setDraft(null);setError('')}).catch(e=>setError(e.message))}>刷新账号</button></p>}
+ {loading?<p>正在读取账号…</p>:<div className="user-list">{accounts.map(u=><article key={u.id}><div className="account-row"><div><b>{u.displayName}</b><span>{u.username} · {userRoleLabel(u.role,u.username)}</span></div><i className={u.active?'enabled':'disabled'}>{u.active?'正常':'已停用'}</i>{editable(u)&&<><button disabled={busy} onClick={()=>{setDraft({id:u.id,version:u.permissionVersion,role:u.role==='admin'?'admin':'employee'});setError('')}}>设置角色</button><button disabled={busy} onClick={()=>write('PATCH',{id:u.id,active:u.active?0:1,expectedVersion:u.permissionVersion},()=>{})}>{u.active?'停用':'启用'}</button>{u.role!=='admin'&&<button className="delete-user" disabled={busy||!!u.active} onClick={()=>{if(window.confirm(`确认永久删除账号“${u.username}”？历史记录保留。`))write('DELETE',{id:u.id,confirmUsername:u.username},()=>setDraft(null))}}>删除</button>}</>}</div>{draft?.id===u.id&&<div className="account-permission-editor">{roleSelect(draft.role,role=>setDraft({...draft,role}),'账号角色')}<button className="permission-save" disabled={busy} onClick={()=>write('PATCH',{id:u.id,role:draft.role,expectedVersion:draft.version},()=>setDraft(null))}>{busy?'保存中…':'保存角色'}</button><button disabled={busy} onClick={()=>setDraft(null)}>取消</button></div>}</article>)}</div>}
+ </div></section></div>;
+}

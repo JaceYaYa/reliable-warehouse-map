@@ -1,0 +1,43 @@
+{
+  "name": "site-creator-vinext-starter",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "vinext dev",
+    "build": "vinext build",
+    "start": "vinext start",
+    "test": "vinext build && node --test tests/rendered-html.test.mjs tests/pricing-regressions.test.mjs tests/transfer-regressions.test.mjs tests/warehouse-layout-regressions.test.mjs tests/warehouse-canvas-regressions.test.mjs tests/search-regressions.test.mjs tests/map-batch-edit-regressions.test.mjs tests/role-permissions.test.mjs tests/stock-editor-regressions.test.mjs tests/warehouse-sync-regressions.test.mjs tests/inbound-message-regressions.test.mjs tests/inventory-integration.test.mjs tests/location-renames.test.mjs tests/location-manager.test.mjs tests/layers-permissions.test.mjs tests/product-identifiers.test.mjs tests/unconfirmed-billing-export.test.mjs tests/inventory-groups.test.mjs tests/inventory-associations.test.mjs tests/inventory-record-edit.test.mjs tests/goods-flow.test.mjs tests/goods-legacy-integration.test.mjs tests/goods-document.test.mjs tests/box-inventory-review.test.mjs tests/box-inventory-safety.test.mjs tests/goods-product-spec.test.mjs tests/goods-create-undo.test.mjs tests/record-filters.test.mjs tests/admin-setting-undo.test.mjs tests/goods-operation-input.test.mjs tests/goods-operation-draft.test.mjs tests/workorder-backup.test.mjs tests/workorders.test.mjs tests/workorders-parsing.test.mjs tests/message-goods.test.mjs tests/goods-identity.test.mjs tests/goods-spec-edit.test.mjs tests/cartons.test.mjs tests/carton-backup.test.mjs tests/new-feature-permissions.test.mjs tests/new-feature-permissions-ui.test.mjs tests/outbound-date-default.test.mjs tests/goods-fifo-physical-separation.test.mjs tests/return-packaging-outbound.test.mjs tests/return-piece-inbound.test.mjs tests/goods-managed-discard.test.mjs tests/carton-search.test.mjs tests/carton-movements.test.mjs tests/goods-staging.test.mjs tests/goods-staging-integration.test.mjs tests/movement-restore-dialog.test.mjs tests/v119-carton-details-ui.test.mjs tests/v119-carton-operations.test.mjs tests/v119-carton-outbound-search.test.mjs tests/v119-carton-outbound-ui.test.mjs tests/v120-box-correction-ui.test.mjs tests/v120-box-correction.test.mjs tests/v120-box-inventory.test.mjs tests/v120-box-recovery-ui.test.mjs tests/v121-box-details.test.mjs tests/v121-box-details-ui.test.mjs tests/v121-box-details-integration.test.mjs tests/v121-box-details-selection-ui.test.mjs tests/v122-no-dimensions.test.mjs tests/v122-pallet-backend.test.mjs tests/v122-pricing-review-ui.test.mjs tests/v122-roles-ui.test.mjs tests/v122-roles.test.mjs tests/v122-warehouse-ui.test.mjs tests/v122-pallet-decimal-ui.test.mjs tests/v122-review-regressions.test.mjs tests/v122-staging-pallet.test.mjs tests/wms-move-replay.test.mjs tests/wms-move-client.test.mjs tests/v123-free-periods-ui.test.mjs tests/v123-free-periods.test.mjs tests/v123-layer-checkpoint.test.mjs tests/v123-layer-history.test.mjs tests/v123-layer-pricing-ui.test.mjs tests/v123-layer-report-api.test.mjs tests/v123-layer-report.test.mjs tests/v123-layer-settings-api.test.mjs tests/v123-layer-settings-ui.test.mjs tests/v123-layer-storage.test.mjs tests/warehouse-time.test.mjs tests/wms-backup.test.mjs tests/v123-layer-mode.test.mjs tests/xmcxmc-owner-access.test.mjs tests/location-layer-volume.test.mjs tests/location-layer-volume-ui.test.mjs tests/v125-warehouse-copy.test.mjs tests/v125-large-backup.test.mjs tests/v125-history-import.test.mjs tests/v125-history-chunks-client.test.mjs tests/v126-layer-current-basis.test.mjs tests/v126-customer-directory.test.mjs tests/v126-unclaimed-customer.test.mjs tests/v126-unclaimed-customer-ui.test.mjs tests/v127-staging-origins.test.mjs tests/v127-staging-display.test.mjs tests/v127-staging-layer-billing.test.mjs tests/v128-formal-selection.test.mjs tests/v128-formal-runtime.test.mjs tests/v1281-remove-counts.test.mjs tests/v1282-shipment-history.test.mjs tests/v129-outbound-owner.test.mjs tests/v130-merchants.test.mjs tests/v130-merchant-ui.test.mjs tests/v130-merchant-moved-history.test.mjs tests/v130-waiting-origins.test.mjs tests/v130-waiting-manual.test.mjs tests/v130-waiting-manual-ui.test.mjs tests/v131-sections.test.mjs tests/v131-outbound-details.test.mjs tests/v131-outbound-details-ui.test.mjs tests/v131-sections-ui.test.mjs tests/v131-sections-workbook.test.mjs tests/v132-automatic-pallets-api.test.mjs tests/v132-automatic-pallets-ui.test.mjs tests/v132-automatic-pallets.test.mjs tests/v132-carton-product-tasks.test.mjs tests/v132-exact-dates.test.mjs tests/v132-independent-review.test.mjs tests/v132-mixed-carton-document.test.mjs tests/v132-pallet-finance.test.mjs tests/v132-carton-automatic-pallets.test.mjs tests/v132-free-batches.test.mjs tests/v132-prospective-pallets.test.mjs tests/v133-layer-defaults.test.mjs tests/v135-layer-report-performance.test.mjs tests/v136-billing-workbook.test.mjs tests/v137-billing-outline.test.mjs tests/v138-location-bill-facts.test.mjs tests/v139-migrated-archive.test.mjs tests/v140-historical-directory-snapshot.test.mjs",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "db:generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "@zxing/browser": "^0.2.1",
+    "drizzle-orm": "0.45.2",
+    "next": "16.2.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "xlsx": "0.18.5"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.37.1",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.26",
+    "drizzle-kit": "0.31.10",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.6",
+    "react-server-dom-webpack": "19.2.6",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "vinext": "0.0.50",
+    "vite": "8.0.13",
+    "wrangler": "4.92.0"
+  },
+  "type": "module"
+}

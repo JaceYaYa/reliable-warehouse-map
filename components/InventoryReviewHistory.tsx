@@ -1,0 +1,25 @@
+"use client";
+import {warehouseTimestamp} from '../lib/warehouse-time';
+import {useMemo,useState} from "react";
+import {inventoryReviewHistory, canUndoInventoryReview, excludedInventoryPair, type AssociationState, type InventoryReview} from "../lib/inventory-associations";
+import type {InventoryGroup, InventoryStock} from "../lib/inventory-groups";
+import styles from "./InventoryWorkspace.module.css";
+import {RecordFilters} from "./RecordFilters";
+import {emptyRecordFilters,matchesRecordDate,type RecordFilters as FilterValues} from "../lib/record-filters";
+
+export function InventoryReviewHistory<T extends InventoryStock>({state,groups,customers,query,canEdit,ready,onState}:{state:AssociationState;groups:InventoryGroup<T>[];customers:string[];query:string;canEdit:boolean;ready:boolean;onState:(state:AssociationState)=>void}) {
+  const [busy,setBusy]=useState(false),[message,setMessage]=useState(""),[confirm,setConfirm]=useState(""),[limit,setLimit]=useState(40);
+  const [filters,setFilters]=useState<FilterValues>(emptyRecordFilters),[applied,setApplied]=useState<FilterValues>(emptyRecordFilters);
+  const groupByStock=useMemo(()=>new Map(groups.flatMap(g=>g.members.map(m=>[m.stock.id,g] as const))),[groups]);
+  const allRecords=inventoryReviewHistory(state),actionName=(r:InventoryReview)=>r.action==='link'?'确认同款':r.action==='exclude'?'不是同款':'撤销关联';
+  const records=allRecords.filter(r=>(!customers.length||customers.includes(r.customer))&&`${r.customer} ${r.product} ${r.groups.map(g=>g.product).join(" ")}`.toLowerCase().includes(query.trim().toLowerCase())).filter(r=>(!applied.action||actionName(r)===applied.action)&&(!applied.operator||r.createdBy===applied.operator)&&matchesRecordDate(r.createdAt,applied)&&(!applied.status||(applied.status==='restored'?!!r.revertedAt:!r.revertedAt))&&(!applied.customer||r.customer.includes(applied.customer))&&(!applied.location||r.groups.some(g=>g.members.some(m=>groupByStock.get(m.stockId)?.members.some(x=>x.stock.id===m.stockId&&x.stock.locationCode===applied.location))))&&`${r.product} ${r.customer} ${r.groups.map(g=>g.product).join(' ')}`.toLowerCase().includes(applied.q.trim().toLowerCase()));
+  const undo=async(r:InventoryReview)=>{if(busy||!ready||!canEdit)return;setBusy(true);setMessage("");try{const response=await fetch("/api/inventory/associations",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"undo",revision:state.revision,reviewId:r.id})});const data=await response.json();if(!response.ok)throw new Error(data.error||"撤回失败");onState(data.state);setConfirm("");setMessage(r.action==="exclude"?"已撤回排除，符合条件的货物会重新出现在待核对推荐中。":"已撤回这次操作，恢复此前的关联。原始库存及计价保留。")}catch(error){setMessage(error instanceof Error?error.message:"撤回失败，请重试")}finally{setBusy(false)}};
+  const status=(r:InventoryReview)=>{if(r.revertedAt)return `已撤回 · ${r.revertedAt.slice(0,10)} · ${r.revertedBy||""}`;if(r.action==="exclude"){const [left,right]=r.groups.map(g=>groupByStock.get(g.members[0]?.stockId));const active=left&&right&&left!==right&&excludedInventoryPair(left,right,{revision:state.revision,associations:[],reviews:[r]});return active?"已排除推荐":"资料或分组已变化，此排除不再屏蔽新推荐"}return canUndoInventoryReview(r,state)?"可撤回":"已被后续操作替代，请先撤回后续操作"};
+  return <section className={styles.reviewHistory} aria-label="核对记录"><p>记录确认同款、不是同款和撤销关联。撤回只恢复关联或推荐状态，每条原始库存与计价批次保留。较早的操作需要先撤回影响同一货物的后续操作。</p>
+    <RecordFilters value={filters} onChange={setFilters} onApply={()=>{setApplied({...filters});setLimit(40);}} onReset={()=>{setFilters(emptyRecordFilters());setApplied(emptyRecordFilters());setLimit(40);}} disabled={busy} actions={['确认同款','不是同款','撤销关联']} operators={[...new Set(allRecords.map(r=>r.createdBy))]} status searchLabel="搜索核对产品或内容"/>
+    {message&&<p className={styles.feedback} role="status">{message}</p>}
+    {records.slice(0,limit).map(r=><article key={r.id} className={styles.historyCard} data-review-id={r.id}><div className={styles.historyHeading}><strong>{r.action==="exclude"?"不是同款，不再提醒":r.action==="unlink"?"撤销关联":"确认同款并关联"}</strong><span>{r.createdAt?warehouseTimestamp(r.createdAt):"日期未记录"} · {r.createdBy}</span></div><p>{r.customer} · {r.product}</p><details><summary>查看核对内容 · {new Set(r.groups.flatMap(g=>g.members.map(m=>m.stockId))).size} 条原始记录</summary>{r.groups.map((g,i)=><div key={i}><b>{g.product}</b><span>库存编号：{g.members.map(m=>m.stockId).join("、")}</span></div>)}</details><div className={styles.historyActions}><small>{status(r)}</small>{canEdit&&canUndoInventoryReview(r,state)&&(confirm===r.id?<><span>撤回这次核对？</span><button disabled={busy||!ready} onClick={()=>void undo(r)}>{busy?"撤回中…":"确认撤回"}</button><button disabled={busy} onClick={()=>setConfirm("")}>取消</button></>:<button disabled={busy||!ready} onClick={()=>setConfirm(r.id)}>撤回</button>)}</div></article>)}
+    {!records.length&&<p className={styles.empty}>{inventoryReviewHistory(state).length?"没有符合当前客户和搜索条件的核对记录":"尚无核对记录"}</p>}
+    {records.length>limit&&<button className={styles.more} onClick={()=>setLimit(limit+40)}>再显示40条记录</button>}
+  </section>;
+}

@@ -1,0 +1,7 @@
+"use client";
+import {useId,useState,type ReactNode} from 'react';
+import {createPortal} from 'react-dom';
+export function GoodsAllocationDialog({open,mode,product,customer,onClose,onComplete,onClear,children,disabled}:{open:boolean;mode:'inbound'|'outbound';product:string;customer:string;onClose:()=>void;onComplete?:()=>string;onClear?:()=>void;children:ReactNode;disabled:boolean}){
+ const id=useId(),[error,setError]=useState('');if(!open)return null;
+ return createPortal(<div className="goods-backdrop goods-allocation-backdrop"><section className={`goods-dialog goods-allocation-dialog goods-dialog-${mode}`} role="dialog" aria-modal="true" aria-labelledby={id}><header><div><h2 id={id}>{mode==='inbound'?'入库':'出库'}库位分配</h2><p>{product} · {customer}</p></div><button type="button" aria-label="关闭库位分配" onClick={()=>{setError('');onClose();}} disabled={disabled}>关闭</button></header><div className="goods-content"><fieldset disabled={disabled} className="goods-allocation-fields">{children}</fieldset></div><footer className="goods-footer">{error&&<p className="goods-line-error" role="alert">{error}</p>}{onClear&&<button type="button" disabled={disabled} onClick={()=>{onClear();setError('');}}>清空本单库位分配</button>}<button type="button" className="goods-primary" disabled={disabled} onClick={()=>{const message=onComplete?.()??'';setError(message);if(!message)onClose();}}>完成分配</button></footer></section></div>,document.body);
+}

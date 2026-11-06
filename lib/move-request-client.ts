@@ -1,0 +1,4 @@
+export type PendingMove={actorId:number;payload:Record<string,unknown>&{requestId:string;id:number;targetLocation:string};sourceLocation:string};
+const key=(id:number)=>'warehouse:move-pending:v1:'+id;
+export function readPendingMove(storage:Pick<Storage,'getItem'>,id:number):PendingMove|null{try{const value=JSON.parse(storage.getItem(key(id))||'null');return value?.actorId===id&&typeof value?.payload?.requestId==='string'&&Number.isSafeInteger(value.payload.id)&&typeof value.payload.targetLocation==='string'&&typeof value.sourceLocation==='string'?value:null}catch{return null}}
+export function savePendingMove(storage:Pick<Storage,'setItem'|'removeItem'>,id:number,value:PendingMove|null){if(value&&value.actorId!==id)throw Error('移库请求账号不匹配');if(value)storage.setItem(key(id),JSON.stringify(value));else storage.removeItem(key(id));}

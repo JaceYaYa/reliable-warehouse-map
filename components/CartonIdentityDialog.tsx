@@ -1,0 +1,9 @@
+"use client";
+import {useEffect} from 'react';
+import {createPortal} from 'react-dom';
+import {CustomerNameInput} from './CustomerNameInput';
+export type CartonIdentity={product:string;sku:string;customerName:string};
+export function CartonIdentityDialog({value,onChange,onSubmit,onClose,customerNames,locationCode,busy=false,pending=false,error=''}:{value:CartonIdentity;onChange:(patch:Partial<CartonIdentity>)=>void;onSubmit:()=>void;onClose:()=>void;customerNames:readonly string[];locationCode:string;busy?:boolean;pending?:boolean;error?:string}){
+ useEffect(()=>{const old=document.body.style.overflow;document.body.style.overflow='hidden';return()=>{document.body.style.overflow=old}},[]);
+ return createPortal(<div className="modal-backdrop identity-edit-backdrop"><section className="identity-edit-dialog carton-identity-dialog" role="dialog" aria-modal="true" aria-label="修改名称 / SKU / 商家" aria-busy={busy}><header><h2>修改名称 / SKU / 商家</h2><button type="button" disabled={busy} onClick={onClose}>关闭</button></header><div className="identity-edit-content"><p className="identity-warning">仅修改当前箱库存记录（{locationCode}）的名称、SKU 和商家。其他库位及共享产品资料保留；不会新建产品或自动关联产品。</p><fieldset disabled={busy||pending}><label>产品名称<input value={value.product} onChange={e=>onChange({product:e.target.value})}/></label><label>SKU<input value={value.sku} onChange={e=>onChange({sku:e.target.value})}/></label><label>商家<CustomerNameInput value={value.customerName} onChange={customerName=>onChange({customerName})} customerNames={customerNames} disabled={busy||pending}/></label></fieldset>{pending&&<p role="status">上次修改结果待核对。再次核对将使用原请求。</p>}{error&&<p role="alert" className="identity-error">{error}</p>}</div><footer><button type="button" disabled={busy} onClick={onClose}>{pending?'关闭，稍后核对':'取消'}</button><button type="button" disabled={busy} onClick={onSubmit}>{busy?'保存中…':pending?'核对上次提交':'确认修改'}</button></footer></section></div>,document.body);
+}

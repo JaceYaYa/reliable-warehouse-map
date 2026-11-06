@@ -1,0 +1,4 @@
+.movement-restore-backdrop{position:fixed;inset:0;z-index:1600;background:#17372a66;display:grid;place-items:center;padding:18px}
+.movement-restore-dialog{background:#fff;border:1px solid #c7d9d0;border-radius:14px;box-shadow:0 18px 65px #0003;padding:24px;max-width:560px;width:100%;max-height:90dvh;overflow:auto;color:#17372a;box-sizing:border-box}
+.movement-restore-dialog h2{margin:0 0 16px;font-size:22px}.movement-restore-dialog p{line-height:1.65;overflow-wrap:anywhere}.movement-restore-dialog [role=alert]{color:#a33a25}
+.movement-restore-dialog footer{display:flex;justify-content:flex-end;gap:12px;margin-top:22px}.movement-restore-dialog button{min-height:44px;padding:10px 18px;border:1px solid #b9cfc2;background:white;border-radius:7px;color:#17372a;font-size:16px}.movement-restore-dialog button:last-child{background:#173f33;color:white}.movement-restore-dialog button:disabled{opacity:.5}

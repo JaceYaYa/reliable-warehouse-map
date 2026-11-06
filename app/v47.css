@@ -1,0 +1,61 @@
+.workspace.pricing-view-active {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.pricing-view-active > .map-panel {
+  min-width: 0;
+}
+
+.pricing-view-active > .editor {
+  display: none;
+}
+
+.pricing-view-active .tools {
+  margin-bottom: 18px;
+}
+
+.pricing-view-active .tools nav {
+  flex-wrap: wrap;
+}
+
+.editor > [class*="pricingFields"] {
+  margin: 0 0 18px;
+}
+
+.editor [class*="overrideGrid"],
+.pricing-outbound-modal [class*="overrideGrid"] {
+  grid-template-columns: 1fr 1fr;
+}
+
+.pricing-outbound-modal {
+  max-height: min(92vh, 940px);
+  max-width: 920px;
+  overflow-y: auto;
+  width: min(920px, calc(100vw - 32px));
+}
+
+.pricing-outbound-modal > [class*="pricingFields"] {
+  margin: 18px 0;
+}
+
+@media (max-width: 650px) {
+  .pricing-view-active .tools nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+  }
+
+  .pricing-view-active .tools nav button {
+    min-width: 0;
+    padding-inline: 10px;
+  }
+
+  .editor [class*="overrideGrid"],
+  .pricing-outbound-modal [class*="overrideGrid"] {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-outbound-modal {
+    width: calc(100vw - 18px);
+  }
+}
